@@ -1,203 +1,204 @@
-# Exploring and comparing different LLMs
+# Explorando e comparando diferentes LLMs
 
 [![Exploring and comparing different LLMs](./images/02-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/KIRUeDKscfI?si=8BHX1zvwzQBn-PlK)
 
-> _Click the image above to view video of this lesson_
+> _Clique na imagem acima para ver o vídeo desta lição_
 
-With the previous lesson, we have seen how Generative AI is changing the technology landscape, how Large Language Models (LLMs) work and how a business - like our startup - can apply them to their use cases and grow! In this chapter, we're looking to compare and contrast different types of large language models (LLMs) to understand their pros and cons.
+Na lição anterior, vimos como a IA generativa está mudando o cenário tecnológico, como os Grandes Modelos de Linguagem (LLMs) funcionam e como um negócio — como nossa startup — pode aplicá-los aos seus casos de uso e crescer! Neste capítulo, vamos comparar e contrastar diferentes tipos de LLMs para entender seus prós e contras.
 
-The next step in our startup's journey is exploring the current landscape of LLMs and understanding which are suitable for our use case.
+O próximo passo na jornada da nossa startup é explorar o cenário atual de LLMs e entender quais são adequados para o nosso caso de uso.
 
-## Introduction
+## Introdução
 
-This lesson will cover:
+Nesta lição, abordaremos:
 
-- Different types of LLMs in the current landscape.
-- Testing, iterating, and comparing different models for your use case in Azure.
-- How to deploy an LLM.
+- Diferentes tipos de LLMs no cenário atual.
+- Testar, iterar e comparar diferentes modelos para seu caso de uso no Azure.
+- Como implantar um LLM.
 
-## Learning Goals
+## Objetivos de Aprendizagem
 
-After completing this lesson, you will be able to:
+Após concluir esta lição, você será capaz de:
 
-- Select the right model for your use case.
-- Understand how to test, iterate, and improve the performance of your model.
-- Know how businesses deploy models.
+- Selecionar o modelo certo para seu caso de uso.
+- Entender como testar, iterar e melhorar o desempenho do seu modelo.
+- Saber como empresas implantam modelos.
 
-## Understand different types of LLMs
+## Entendendo diferentes tipos de LLMs
 
-LLMs can have multiple categorizations based on their architecture, training data, and use case. Understanding these differences will help our startup select the right model for the scenario, and understand how to test, iterate, and improve performance.
+Os LLMs podem ter múltiplas categorizações com base em sua arquitetura, dados de treinamento e caso de uso. Entender essas diferenças ajudará nossa startup a selecionar o modelo certo para o cenário e a entender como testar, iterar e melhorar o desempenho.
 
-There are many different types of LLM models, your choice of model depends on what you aim to use them for, your data, how much you're ready to pay and more.
+Existem muitos tipos diferentes de modelos LLM; a escolha depende do que você pretende usar, seus dados, quanto você está disposto a pagar e mais.
 
-Depending on if you aim to use the models for text, audio, video, image generation and so on, you might opt for a different type of model.
+Dependendo se você pretende usar os modelos para texto, áudio, vídeo, geração de imagem e assim por diante, pode optar por um tipo diferente de modelo.
 
-- **Audio and speech recognition**. For this purpose, Whisper-type models are a great choice as they're general-purpose and aimed at speech recognition. It's trained on diverse audio and can perform multilingual speech recognition. Learn more about [Whisper type models here](https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst).
+- **Áudio e reconhecimento de fala**. Para essa finalidade, modelos do tipo Whisper são uma excelente escolha, pois são de propósito geral e voltados ao reconhecimento de fala. Eles são treinados em áudio diverso e podem realizar reconhecimento de fala multilíngue. Saiba mais sobre [modelos do tipo Whisper aqui](https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst).
 
-- **Image generation**. For image generation, DALL-E and Midjourney are two very well-known choices. DALL-E is offered by Azure OpenAI. [Read more about DALL-E here](https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst) and also in Chapter 9 of this curriculum.
+- **Geração de imagens**. Para geração de imagens, DALL-E e Midjourney são duas escolhas muito conhecidas. O DALL-E é oferecido pelo Azure OpenAI. [Leia mais sobre DALL-E aqui](https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst) e também no Capítulo 9 deste currículo.
 
-- **Text generation**. Most models are trained on text generation and you have a large variety of choices from GPT-3.5 to GPT-4. They come at different costs with GPT-4 being the most expensive. It's worth looking into the [Azure OpenAI playground](https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst) to evaluate which models best fit your needs in terms of capability and cost.
+- **Geração de texto**. A maioria dos modelos é treinada para geração de texto e você tem uma grande variedade de opções, do GPT-3.5 ao GPT-4. Eles apresentam custos diferentes, sendo o GPT-4 o mais caro. Vale a pena olhar o [playground do Azure OpenAI](https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst) para avaliar quais modelos se encaixam melhor às suas necessidades em termos de capacidade e custo.
 
-- **Multi-modality**. If you're looking to handle multiple types of data in input and output, you might want to look into models like [gpt-4 turbo with vision or gpt-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models?WT.mc_id=academic-105485-koreyst) - the latest releases of OpenAI models - which are capable to combine natural language processing to visual understanding, enabling interactions through multi-modal interfaces.
+- **Multi-modalidade**. Se você deseja lidar com múltiplos tipos de dados na entrada e na saída, pode querer observar modelos como [gpt-4 turbo com visão ou gpt-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models?WT.mc_id=academic-105485-koreyst) — os lançamentos mais recentes de modelos OpenAI — que são capazes de combinar processamento de linguagem natural com compreensão visual, permitindo interações por interfaces multimodais.
 
-Selecting a model means you get some basic capabilities, that might not be enough however. Often you have company specific data that you somehow need to tell the LLM about. There are a few different choices on how to approach that, more on that in the upcoming sections.
+Selecionar um modelo significa obter algumas capacidades básicas, o que pode não ser suficiente. Frequentemente, você tem dados específicos da empresa que precisa informar ao LLM de alguma forma. Existem algumas escolhas diferentes sobre como abordar isso, e veremos mais nas próximas seções.
 
 ### Foundation Models versus LLMs
 
-The term Foundation Model was [coined by Stanford researchers](https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst) and defined as an AI model that follows some criteria, such as:
+O termo Foundation Model foi [cunhado por pesquisadores de Stanford](https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst) e definido como um modelo de IA que segue alguns critérios, tais como:
 
-- **They are trained using unsupervised learning or self-supervised learning**, meaning they are trained on unlabeled multi-modal data, and they do not require human annotation or labeling of data for their training process.
-- **They are very large models**, based on very deep neural networks trained on billions of parameters.
-- **They are normally intended to serve as a ‘foundation’ for other models**, meaning they can be used as a starting point for other models to be built on top of, which can be done by fine-tuning.
+- **São treinados usando aprendizado não supervisionado ou auto-supervisionado**, ou seja, são treinados em dados multimodais não rotulados e não exigem anotação humana ou rotulagem de dados para o processo de treinamento.
+- **São modelos muito grandes**, baseados em redes neurais profundas treinadas em bilhões de parâmetros.
+- **Normalmente são destinados a servir como uma ‘base’ para outros modelos**, ou seja, podem ser usados como ponto de partida para outros modelos construídos sobre eles, o que pode ser feito por meio de fine-tuning.
 
 ![Foundation Models versus LLMs](./images/FoundationModel.png?WT.mc_id=academic-105485-koreyst)
 
-Image source: [Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium
-](https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404)
+Fonte da imagem: [Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium](https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404)
 
-To further clarify this distinction, let’s take ChatGPT as an example. To build the first version of ChatGPT, a model called GPT-3.5 served as the foundation model. This means that OpenAI used some chat-specific data to create a tuned version of GPT-3.5 that was specialized in performing well in conversational scenarios, such as chatbots.
+Para esclarecer melhor essa distinção, vamos usar o ChatGPT como exemplo. Para construir a primeira versão do ChatGPT, um modelo chamado GPT-3.5 serviu como modelo base. Isso significa que a OpenAI usou alguns dados específicos de chat para criar uma versão ajustada do GPT-3.5 que foi especializada em desempenho em cenários conversacionais, como chatbots.
 
 ![Foundation Model](./images/Multimodal.png?WT.mc_id=academic-105485-koreyst)
 
-Image source: [2108.07258.pdf (arxiv.org)](https://arxiv.org/pdf/2108.07258.pdf?WT.mc_id=academic-105485-koreyst)
+Fonte da imagem: [2108.07258.pdf (arxiv.org)](https://arxiv.org/pdf/2108.07258.pdf?WT.mc_id=academic-105485-koreyst)
 
-### Open Source versus Proprietary Models
+### Modelos open source versus proprietários
 
-Another way to categorize LLMs is whether they are open source or proprietary.
+Outra forma de categorizar LLMs é se eles são open source ou proprietários.
 
-Open-source models are models that are made available to the public and can be used by anyone. They are often made available by the company that created them, or by the research community. These models are allowed to be inspected, modified, and customized for the various use cases in LLMs. However, they are not always optimized for production use, and may not be as performant as proprietary models. Plus, funding for open-source models can be limited, and they may not be maintained long term or may not be updated with the latest research. Examples of popular open source models include [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst), [Bloom](https://huggingface.co/bigscience/bloom) and [LLaMA](https://llama.meta.com).
+Modelos open source são modelos disponibilizados ao público e podem ser usados por qualquer pessoa. Frequentemente são disponibilizados pela empresa que os criou ou pela comunidade de pesquisa. Esses modelos podem ser inspecionados, modificados e personalizados para vários casos de uso. No entanto, nem sempre são otimizados para uso em produção e podem não ser tão performáticos quanto modelos proprietários. Além disso, o financiamento para modelos open source pode ser limitado, e eles podem não ser mantidos a longo prazo ou atualizados com a pesquisa mais recente. Exemplos de modelos open source populares incluem [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst), [Bloom](https://huggingface.co/bigscience/bloom) e [LLaMA](https://llama.meta.com).
 
-Proprietary models are models that are owned by a company and are not made available to the public. These models are often optimized for production use. However, they are not allowed to be inspected, modified, or customized for different use cases. Plus, they are not always available for free, and may require a subscription or payment to use. Also, users do not have control over the data that is used to train the model, which means they should entrust the model owner with ensuring commitment to data privacy and responsible use of AI. Examples of popular proprietary models include [OpenAI models](https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst), [Google Bard](https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst) or [Claude 2](https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst).
+Modelos proprietários são modelos que pertencem a uma empresa e não são disponibilizados ao público. Esses modelos geralmente são otimizados para uso em produção. No entanto, não podem ser inspecionados, modificados ou personalizados para diferentes casos de uso. Além disso, nem sempre estão disponíveis gratuitamente e podem exigir assinatura ou pagamento para uso. Também, os usuários não têm controle sobre os dados usados para treinar o modelo, o que significa que devem confiar no proprietário do modelo para garantir comprometimento com privacidade de dados e uso responsável de IA. Exemplos de modelos proprietários populares incluem [modelos OpenAI](https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst), [Google Bard](https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst) e [Claude 2](https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst).
 
-### Embedding versus Image generation versus Text and Code generation
+### Embeddings versus geração de imagem versus geração de texto e código
 
-LLMs can also be categorized by the output they generate.
+Os LLMs também podem ser categorizados pelo tipo de saída que geram.
 
-Embeddings are a set of models that can convert text into a numerical form, called embedding, which is a numerical representation of the input text. Embeddings make it easier for machines to understand the relationships between words or sentences and can be consumed as inputs by other models, such as classification models, or clustering models that have better performance on numerical data. Embedding models are often used for transfer learning, where a model is built for a surrogate task for which there’s an abundance of data, and then the model weights (embeddings) are re-used for other downstream tasks. An example of this category is [OpenAI embeddings](https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst).
+Embeddings são um conjunto de modelos que podem converter texto em uma forma numérica, chamada embedding, que é uma representação numérica do texto de entrada. Embeddings facilitam para as máquinas entenderem as relações entre palavras ou frases e podem ser usados como entradas por outros modelos, como modelos de classificação ou de agrupamento, que apresentam melhor desempenho em dados numéricos. Modelos de embeddings são frequentemente usados para transfer learning, onde um modelo é construído para uma tarefa substituta com abundância de dados e, em seguida, os pesos do modelo (embeddings) são reutilizados para outras tarefas downstream. Um exemplo dessa categoria é [embeddings OpenAI](https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst).
 
 ![Embedding](./images/Embedding.png?WT.mc_id=academic-105485-koreyst)
 
-Image generation models are models that generate images. These models are often used for image editing, image synthesis, and image translation. Image generation models are often trained on large datasets of images, such as [LAION-5B](https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst), and can be used to generate new images or to edit existing images with inpainting, super-resolution, and colorization techniques. Examples include [DALL-E-3](https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst) and [Stable Diffusion models](https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst).
+Modelos de geração de imagens são modelos que geram imagens. Esses modelos são frequentemente usados para edição de imagens, síntese de imagens e tradução de imagens. Modelos de geração de imagem são frequentemente treinados em grandes conjuntos de dados de imagens, como [LAION-5B](https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst), e podem ser usados para gerar novas imagens ou editar imagens existentes com técnicas de inpainting, super-resolução e colorização. Exemplos incluem [DALL-E-3](https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst) e [modelos Stable Diffusion](https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst).
 
 ![Image generation](./images/Image.png?WT.mc_id=academic-105485-koreyst)
 
-Text and code generation models are models that generate text or code. These models are often used for text summarization, translation, and question answering. Text generation models are often trained on large datasets of text, such as [BookCorpus](https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst), and can be used to generate new text, or to answer questions. Code generation models, like [CodeParrot](https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst), are often trained on large datasets of code, such as GitHub, and can be used to generate new code, or to fix bugs in existing code.
+Modelos de geração de texto e código são modelos que geram texto ou código. Esses modelos são frequentemente usados para sumarização de texto, tradução e perguntas e respostas. Modelos de geração de texto são frequentemente treinados em grandes conjuntos de dados de texto, como [BookCorpus](https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst), e podem ser usados para gerar novo texto ou responder perguntas. Modelos de geração de código, como [CodeParrot](https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst), são frequentemente treinados em grandes conjuntos de dados de código, como GitHub, e podem ser usados para gerar código novo ou corrigir bugs em código existente.
 
 ![Text and code generation](./images/Text.png?WT.mc_id=academic-105485-koreyst)
 
 ### Encoder-Decoder versus Decoder-only
 
-To talk about the different types of architectures of LLMs, let's use an analogy.
+Para falar sobre os diferentes tipos de arquiteturas de LLMs, vamos usar uma analogia.
 
-Imagine your manager gave you a task for writing a quiz for the students. You have two colleagues; one oversees creating the content and the other oversees reviewing them.
+Imagine que seu gerente lhe deu a tarefa de escrever um quiz para os alunos. Você tem dois colegas; um cuida da criação do conteúdo e o outro cuida da revisão.
 
-The content creator is like a Decoder only model, they can look at the topic and see what you already wrote and then he can write a course based on that. They are very good at writing engaging and informative content, but they are not very good at understanding the topic and the learning objectives. Some examples of Decoder models are GPT family models, such as GPT-3.
+O criador de conteúdo é como um modelo apenas Decoder: ele pode olhar para o tema e ver o que você já escreveu e então escrever um curso com base nisso. Eles são muito bons em escrever conteúdo envolvente e informativo, mas não são muito bons em entender o tema e os objetivos de aprendizagem. Alguns exemplos de modelos Decoder são os modelos da família GPT, como o GPT-3.
 
-The reviewer is like an Encoder only model, they look at the course written and the answers, noticing the relationship between them and understanding context, but they are not good at generating content. An example of Encoder only model would be BERT.
+O revisor é como um modelo apenas Encoder: ele olha o curso escrito e as respostas, percebe a relação entre eles e entende o contexto, mas não é bom em gerar conteúdo. Um exemplo de modelo apenas Encoder seria o BERT.
 
-Imagine that we can have someone as well who could create and review the quiz, this is an Encoder-Decoder model. Some examples would be BART and T5.
+Imagine que também podemos ter alguém que possa criar e revisar o quiz; esse é um modelo Encoder-Decoder. Alguns exemplos seriam BART e T5.
 
-### Service versus Model
+### Serviço versus Modelo
 
-Now, let's talk about the difference between a service and a model. A service is a product that is offered by a Cloud Service Provider, and is often a combination of models, data, and other components. A model is the core component of a service, and is often a foundation model, such as an LLM.
+Agora, vamos falar sobre a diferença entre serviço e modelo. Um serviço é um produto oferecido por um provedor de nuvem e costuma ser uma combinação de modelos, dados e outros componentes. Um modelo é o componente central de um serviço e costuma ser um modelo base, como um LLM.
 
-Services are often optimized for production use and are often easier to use than models, via a graphical user interface. However, services are not always available for free, and may require a subscription or payment to use, in exchange for leveraging the service owner’s equipment and resources, optimizing expenses and scaling easily. An example of a service is [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=academic-105485-koreyst), which offers a pay-as-you-go rate plan, meaning users are charged proportionally to how much they use the service Also, Azure OpenAI Service offers enterprise-grade security and a responsible AI framework on top of the models' capabilities.
+Os serviços são frequentemente otimizados para uso em produção e costumam ser mais fáceis de usar do que modelos, por meio de uma interface gráfica. No entanto, serviços nem sempre estão disponíveis gratuitamente e podem exigir assinatura ou pagamento para uso, em troca de aproveitar o equipamento e os recursos do proprietário do serviço, otimizar despesas e escalar facilmente. Um exemplo de serviço é o [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=academic-105485-koreyst), que oferece um plano de tarifa pay-as-you-go, o que significa que os usuários são cobrados proporcionalmente ao quanto usam o serviço. Além disso, o Azure OpenAI Service oferece segurança em nível empresarial e um framework de IA responsável por cima das capacidades dos modelos.
 
-Models are just the Neural Network, with the parameters, weights, and others. Allowing companies to run locally, however, would need to buy equipment, build a structure to scale and buy a license or use an open-source model. A model like LLaMA is available to be used, requiring computational power to run the model.
+Modelos são apenas a rede neural, com os parâmetros, pesos e outros. Permitir que empresas executem localmente exigiria comprar equipamento, construir uma estrutura para escalar e adquirir uma licença ou usar um modelo open source. Um modelo como LLaMA está disponível para uso, exigindo capacidade computacional para executar o modelo.
 
-## How to test and iterate with different models to understand performance on Azure
+## Como testar e iterar com diferentes modelos para entender o desempenho no Azure
 
-Once our team has explored the current LLMs landscape and identified some good candidates for their scenarios, the next step is testing them on their data and on their workload. This is an iterative process, done by experiments and measures.
-Most of the models we mentioned in previous paragraphs (OpenAI models, open source models like Llama2, and Hugging Face transformers) are available in the [Model Catalog](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview?WT.mc_id=academic-105485-koreyst) in [Azure AI Studio](https://ai.azure.com/?WT.mc_id=academic-105485-koreyst).
+Uma vez que nossa equipe explorou o cenário atual de LLMs e identificou alguns bons candidatos para seus cenários, o próximo passo é testá-los em seus dados e em sua carga de trabalho. Esse é um processo iterativo, feito por experimentos e medições.
+A maioria dos modelos mencionados nos parágrafos anteriores (modelos OpenAI, modelos open source como Llama2 e transformers do Hugging Face) estão disponíveis no [Catálogo de Modelos](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview?WT.mc_id=academic-105485-koreyst) no [Azure AI Studio](https://ai.azure.com/?WT.mc_id=academic-105485-koreyst).
 
-[Azure AI Studio](https://learn.microsoft.com/azure/ai-studio/what-is-ai-studio?WT.mc_id=academic-105485-koreyst) is a Cloud Platform designed for developers to build generative AI applications and manage the whole development lifecycle - from experimentation to evaluation - by combining all Azure AI services into a single hub with an handy GUI. The Model Catalog in Azure AI Studio enables the user to:
+[Azure AI Studio](https://learn.microsoft.com/azure/ai-studio/what-is-ai-studio?WT.mc_id=academic-105485-koreyst) é uma plataforma em nuvem projetada para desenvolvedores construírem aplicações de IA generativa e gerenciarem todo o ciclo de vida de desenvolvimento - da experimentação à avaliação - combinando todos os serviços Azure AI em um único hub com uma interface gráfica prática. O Catálogo de Modelos no Azure AI Studio permite ao usuário:
 
-- Find the Foundation Model of interest in the catalog - either proprietary or open source, filtering by task, license, or name. To improve searchability, the models are organized into collections, like Azure OpenAI collection, Hugging Face collection, and more.
+- Encontrar o Foundation Model de interesse no catálogo - seja proprietário ou open source - filtrando por tarefa, licença ou nome. Para melhorar a capacidade de busca, os modelos são organizados em coleções, como a coleção Azure OpenAI, a coleção Hugging Face e outras.
 
 ![Model catalog](./images/AzureAIStudioModelCatalog.png?WT.mc_id=academic-105485-koreyst)
 
-- Review the model card, including a detailed description of intended use and training data, code samples and evaluation results on the internal evaluations library.
+- Revisar a ficha do modelo, incluindo uma descrição detalhada do uso pretendido e dos dados de treinamento, exemplos de código e resultados de avaliação na biblioteca de avaliações internas.
 
 ![Model card](./images/ModelCard.png?WT.mc_id=academic-105485-koreyst)
 
-- Compare benchmarks across models and datasets available in the industry to assess which one meets the business scenario, through the [Model Benchmarks](https://learn.microsoft.com/azure/ai-studio/how-to/model-benchmarks?WT.mc_id=academic-105485-koreyst) pane.
+- Comparar benchmarks entre modelos e conjuntos de dados disponíveis na indústria para avaliar qual atende ao cenário de negócio, por meio do painel [Model Benchmarks](https://learn.microsoft.com/azure/ai-studio/how-to/model-benchmarks?WT.mc_id=academic-105485-koreyst).
 
 ![Model benchmarks](./images/ModelBenchmarks.png?WT.mc_id=academic-105485-koreyst)
 
-- Fine-tune the model on custom training data to improve model performance in a specific workload, leveraging the experimentation and tracking capabilities of Azure AI Studio.
+- Ajustar o modelo com dados de treinamento personalizados para melhorar o desempenho do modelo em uma carga de trabalho específica, aproveitando as capacidades de experimentação e rastreamento do Azure AI Studio.
 
 ![Model fine-tuning](./images/FineTuning.png?WT.mc_id=academic-105485-koreyst)
 
-- Deploy the original pre-trained model or the fine-tuned version to a remote real time inference - managed compute - or serverless api endpoint - [pay-as-you-go](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview#model-deployment-managed-compute-and-serverless-api-pay-as-you-go?WT.mc_id=academic-105485-koreyst) - to enable applications to consume it.
+- Implantar o modelo pré-treinado original ou a versão ajustada em uma inferência em tempo real remota - compute gerenciado - ou endpoint de API serverless - [pay-as-you-go](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview#model-deployment-managed-compute-and-serverless-api-pay-as-you-go?WT.mc_id=academic-105485-koreyst) - para permitir que aplicações o consumam.
 
 ![Model deployment](./images/ModelDeploy.png?WT.mc_id=academic-105485-koreyst)
 
 > [!NOTE]
-> Not all models in the catalog are currently available for fine-tuning and/or pay-as-you-go deployment. Check the model card for details on the model's capabilities and limitations.
+> Nem todos os modelos no catálogo estão atualmente disponíveis para fine-tuning e/ou implantação pay-as-you-go. Verifique a ficha do modelo para detalhes sobre as capacidades e limitações do modelo.
 
-## Improving LLM results
+## Melhorando os resultados de LLMs
 
-We’ve explored with our startup team different kinds of LLMs and a Cloud Platform (Azure Machine Learning) enabling us to compare different models, evaluate them on test data, improve performance and deploy them on inference endpoints.
+Exploramos com nossa equipe de startup diferentes tipos de LLMs e uma plataforma em nuvem (Azure Machine Learning) que nos permite comparar diferentes modelos, avaliá-los com dados de teste, melhorar o desempenho e implantá-los em endpoints de inferência.
 
-But when shall they consider fine-tuning a model rather than using a pre-trained one? Are there other approaches to improve model performance on specific workloads?
+Mas quando eles devem considerar ajustar um modelo em vez de usar um pré-treinado? Existem outras abordagens para melhorar o desempenho do modelo em cargas de trabalho específicas?
 
-There are several approaches a business can use to get the results they need from an LLM. You can select different types of models with different degrees of training when deploying an LLM in production, with different levels of complexity, cost, and quality. Here are some different approaches:
+Existem várias abordagens que uma empresa pode usar para obter os resultados desejados de um LLM. Você pode selecionar diferentes tipos de modelos com diferentes graus de treinamento ao implantar um LLM em produção, com diferentes níveis de complexidade, custo e qualidade. Aqui estão algumas abordagens diferentes:
 
-- **Prompt engineering with context**. The idea is to provide enough context when you prompt to ensure you get the responses you need.
+- **Engenharia de prompt com contexto**. A ideia é fornecer contexto suficiente ao prompt para garantir respostas que você precise.
 
-- **Retrieval Augmented Generation, RAG**. Your data might exist in a database or web endpoint for example, to ensure this data, or a subset of it, is included at the time of prompting, you can fetch the relevant data and make that part of the user's prompt.
+- **Retrieval Augmented Generation, RAG**. Seus dados podem existir em um banco de dados ou endpoint web, por exemplo, e para garantir que esses dados, ou um subconjunto deles, sejam incluídos no momento do prompt, você pode buscar os dados relevantes e incluí-los no prompt do usuário.
 
-- **Fine-tuned model**. Here, you trained the model further on your own data which led to the model being more exact and responsive to your needs but might be costly.
+- **Modelo fine-tuned**. Aqui, você treina o modelo adicionalmente com seus próprios dados, o que faz com que o modelo seja mais preciso e responsivo às suas necessidades, mas pode ser caro.
 
 ![LLMs deployment](./images/Deploy.png?WT.mc_id=academic-105485-koreyst)
 
-Img source: [Four Ways that Enterprises Deploy LLMs | Fiddler AI Blog](https://www.fiddler.ai/blog/four-ways-that-enterprises-deploy-llms?WT.mc_id=academic-105485-koreyst)
+Fonte da imagem: [Four Ways that Enterprises Deploy LLMs | Fiddler AI Blog](https://www.fiddler.ai/blog/four-ways-that-enterprises-deploy-llms?WT.mc_id=academic-105485-koreyst)
 
-### Prompt Engineering with Context
+### Engenharia de prompt com contexto
 
-Pre-trained LLMs work very well on generalized natural language tasks, even by calling them with a short prompt, like a sentence to complete or a question – the so-called “zero-shot” learning.
+LLMs pré-treinados funcionam muito bem em tarefas generalizadas de linguagem natural, mesmo sendo chamados com um prompt curto, como uma frase para completar ou uma pergunta — o chamado aprendizado “zero-shot”.
 
-However, the more the user can frame their query, with a detailed request and examples – the Context – the more accurate and closest to user’s expectations the answer will be. In this case, we talk about “one-shot” learning if the prompt includes only one example and “few shot learning” if it includes multiple examples.
-Prompt engineering with context is the most cost-effective approach to kick-off with.
+No entanto, quanto mais o usuário puder enquadrar sua consulta com um pedido detalhado e exemplos — o Contexto — mais precisa e próxima das expectativas do usuário a resposta será. Nesse caso, falamos em aprendizado “one-shot” se o prompt inclui apenas um exemplo e “few-shot learning” se inclui vários exemplos.
+A engenharia de prompt com contexto é a abordagem mais econômica para começar.
 
 ### Retrieval Augmented Generation (RAG)
 
-LLMs have the limitation that they can use only the data that has been used during their training to generate an answer. This means that they don’t know anything about the facts that happened after their training process, and they cannot access non-public information (like company data).
-This can be overcome through RAG, a technique that augments prompt with external data in the form of chunks of documents, considering prompt length limits. This is supported by Vector database tools (like [Azure Vector Search](https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst)) that retrieve the useful chunks from varied pre-defined data sources and add them to the prompt Context.
+LLMs têm a limitação de que podem usar apenas os dados que foram usados durante seu treinamento para gerar uma resposta. Isso significa que eles não sabem nada sobre fatos que aconteceram após seu processo de treinamento e não conseguem acessar informações não públicas (como dados da empresa).
 
-This technique is very helpful when a business doesn’t have enough data, enough time, or resources to fine-tune an LLM, but still wishes to improve performance on a specific workload and reduce risks of fabrications, i.e., mystification of reality or harmful content.
+Isso pode ser superado por meio de RAG, uma técnica que aumenta o prompt com dados externos na forma de trechos de documentos, considerando os limites de tamanho do prompt. Isso é suportado por ferramentas de banco de dados vetorial (como [Azure Vector Search](https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst)) que recuperam trechos úteis de várias fontes de dados predefinidas e os adicionam ao contexto do prompt.
 
-### Fine-tuned model
+Essa técnica é muito útil quando uma empresa não tem dados suficientes, tempo suficiente ou recursos para ajustar um LLM, mas ainda deseja melhorar o desempenho em uma carga de trabalho específica e reduzir riscos de fabricação de fatos, ou seja, mistificação da realidade ou conteúdo prejudicial.
 
-Fine-tuning is a process that leverages transfer learning to ‘adapt’ the model to a downstream task or to solve a specific problem. Differently from few-shot learning and RAG, it results in a new model being generated, with updated weights and biases. It requires a set of training examples consisting of a single input (the prompt) and its associated output (the completion).
-This would be the preferred approach if:
+### Modelo fine-tuned
 
-- **Using fine-tuned models**. A business would like to use fine-tuned less capable models (like embedding models) rather than high performance models, resulting in a more cost effective and fast solution.
+Fine-tuning é um processo que aproveita transfer learning para “adaptar” o modelo a uma tarefa downstream ou resolver um problema específico. Diferentemente do few-shot learning e do RAG, ele resulta em um novo modelo sendo gerado, com pesos e vieses atualizados. Requer um conjunto de exemplos de treinamento consistindo em uma única entrada (o prompt) e sua saída associada (a conclusão).
 
-- **Considering latency**. Latency is important for a specific use-case, so it’s not possible to use very long prompts or the number of examples that should be learned from the model doesn’t fit with the prompt length limit.
+Essa seria a abordagem preferida se:
 
-- **Staying up to date**. A business has a lot of high-quality data and ground truth labels and the resources required to maintain this data up to date over time.
+- **Usar modelos fine-tuned**. Uma empresa gostaria de usar modelos menos capazes, porém ajustados (como modelos de embeddings), em vez de modelos de alto desempenho, resultando em uma solução mais econômica e rápida.
 
-### Trained model
+- **Considerar latência**. A latência é importante para um caso de uso específico, então não é possível usar prompts muito longos ou o número de exemplos que o modelo precisa aprender não cabe no limite de tamanho do prompt.
 
-Training an LLM from scratch is without a doubt the most difficult and the most complex approach to adopt, requiring massive amounts of data, skilled resources, and appropriate computational power. This option should be considered only in a scenario where a business has a domain-specific use case and a large amount of domain-centric data.
+- **Manter-se atualizado**. Uma empresa possui muitos dados de alta qualidade e rótulos de verdade básica (ground truth) e os recursos necessários para manter esses dados atualizados ao longo do tempo.
 
-## Knowledge check
+### Modelo treinado
 
-What could be a good approach to improve LLM completion results?
+Treinar um LLM do zero é, sem dúvida, a abordagem mais difícil e complexa de adotar, exigindo enormes quantidades de dados, recursos qualificados e poder computacional adequado. Essa opção deve ser considerada apenas em um cenário onde uma empresa tem um caso de uso altamente específico e uma grande quantidade de dados centrados no domínio.
 
-1. Prompt engineering with context
+## Verificação de conhecimento
+
+Qual poderia ser uma boa abordagem para melhorar os resultados de conclusão de um LLM?
+
+1. Engenharia de prompt com contexto
 1. RAG
-1. Fine-tuned model
+1. Modelo fine-tuned
 
-A:3, if you have the time and resources and high quality data, fine-tuning is the better option to stay up to date. However, if you're looking at improving things and you're lacking time it's worth considering RAG first.
+R: 3, se você tiver tempo, recursos e dados de alta qualidade, o fine-tuning é a melhor opção para se manter atualizado. No entanto, se você estiver procurando melhorar as coisas e estiver sem tempo, vale a pena considerar o RAG primeiro.
 
-## 🚀 Challenge
+## 🚀 Desafio
 
-Read up more on how you can [use RAG](https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst) for your business.
+Leia mais sobre como você pode [usar RAG](https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst) para o seu negócio.
 
-## Great Work, Continue Your Learning
+## Excelente trabalho, continue aprendendo
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Após concluir esta lição, confira nossa [coleção de aprendizado de IA generativa](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) para continuar aprimorando seu conhecimento em IA generativa!
 
-Head over to Lesson 3 where we will look at how to [build with Generative AI Responsibly](../03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)!
+Vá para a Lição 3, onde veremos como [construir com IA generativa de forma responsável](../03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)!

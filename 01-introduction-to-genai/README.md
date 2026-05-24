@@ -1,136 +1,135 @@
-# Introduction to Generative AI and Large Language Models
+# Introdução à IA Generativa e Grandes Modelos de Linguagem
 
 [![Introduction to Generative AI and Large Language Models](./images/01-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/lFXQkBvEe0o?si=6ZBcQTwLJJDpnX0K)
 
-_(Click the image above to view video of this lesson)_
+> _Clique na imagem acima para ver o vídeo desta lição_
 
-Generative AI is artificial intelligence capable of generating text, images and other types of content. What makes it a fantastic technology is that it democratizes AI, anyone can use it with as little as a text prompt, a sentence written in a natural language. There's no need for you to learn a language like Java or SQL to accomplish something worthwhile, all you need is to use your language, state what you want and out comes a suggestion from an AI model. The applications and impact for this are huge, you write or understand reports, write applications and much more, all in seconds.
+IA generativa é inteligência artificial capaz de gerar texto, imagens e outros tipos de conteúdo. O que a torna uma tecnologia fantástica é que ela democratiza a IA: qualquer pessoa pode usá-la com tão pouco quanto um prompt de texto, uma frase escrita em linguagem natural. Não é preciso aprender uma linguagem como Java ou SQL para realizar algo relevante; tudo o que você precisa é usar sua linguagem, dizer o que deseja e surge uma sugestão de um modelo de IA. As aplicações e o impacto disso são enormes: você escreve ou entende relatórios, escreve aplicações e muito mais, tudo em segundos.
 
-In this curriculum, we’ll explore how our startup leverages generative AI to unlock new scenarios in the education world and how we address the inevitable challenges associated with the social implications of its application and the technology limitations.
+Neste currículo, exploraremos como nossa startup aproveita a IA generativa para desbloquear novos cenários no mundo da educação e como abordamos os desafios inevitáveis associados às implicações sociais de sua aplicação e às limitações da tecnologia.
 
-## Introduction
+## Introdução
 
-This lesson will cover:
+Esta lição abordará:
 
-- Introduction to the business scenario: our startup idea and mission.
-- Generative AI and how we landed on the current technology landscape.
-- Inner working of a large language model.
-- Main capabilities and practical use cases of Large Language Models.
+- Introdução ao cenário de negócio: a ideia e missão da nossa startup.
+- IA generativa e como chegamos ao cenário tecnológico atual.
+- Funcionamento interno de um grande modelo de linguagem.
+- Principais capacidades e casos de uso práticos de Grandes Modelos de Linguagem.
 
-## Learning Goals
+## Objetivos de Aprendizagem
 
-After completing this lesson, you will understand:
+Após concluir esta lição, você entenderá:
 
-- What generative AI is and how Large Language Models work.
-- How you can leverage large language models for different use cases, with a focus on education scenarios.
+- O que é IA generativa e como funcionam os Grandes Modelos de Linguagem.
+- Como você pode aproveitar grandes modelos de linguagem para diferentes casos de uso, com foco em cenários educacionais.
 
-## Scenario: our educational startup
+## Cenário: nossa startup educacional
 
-Generative Artificial Intelligence (AI) represents the pinnacle of AI technology, pushing the boundaries of what was once thought impossible. Generative AI models have several capabilities and applications, but for this curriculum we'll explore how it's revolutionizing education through a fictional startup. We'll refer to this startup as _our startup_. Our startup works in the education domain with the ambitious mission statement of
+A Inteligência Artificial Generativa (IA) representa o auge da tecnologia de IA, ampliando os limites do que antes era considerado impossível. Modelos de IA generativa têm várias capacidades e aplicações, mas neste currículo exploraremos como ela está revolucionando a educação por meio de uma startup fictícia. Chamaremos essa startup de _nossa startup_. Nossa startup atua no domínio da educação com a ambiciosa declaração de missão:
 
-> _improving accessibility in learning, on a global scale, ensuring equitable access to education and providing personalized learning experiences to every learner, according to their needs_.
+> _melhorar a acessibilidade no aprendizado, em escala global, garantindo acesso equitativo à educação e oferecendo experiências de aprendizagem personalizadas a cada estudante, de acordo com suas necessidades_.
 
-Our startup team is aware we’ll not be able to achieve this goal without leveraging one of the most powerful tools of modern times – Large Language Models (LLMs).
+Nossa equipe da startup sabe que não será possível alcançar esse objetivo sem aproveitar uma das ferramentas mais poderosas dos tempos modernos — os Grandes Modelos de Linguagem (LLMs).
 
-Generative AI is expected to revolutionize the way we learn and teach today, with students having at their disposal virtual teachers 24 hours a day who provide vast amounts of information and examples, and teachers able to leverage innovative tools to assess their students and give feedback.
+Espera-se que a IA generativa revolucione a maneira como aprendemos e ensinamos hoje, com estudantes tendo à disposição professores virtuais 24 horas por dia que fornecem grandes quantidades de informação e exemplos, e professores podendo utilizar ferramentas inovadoras para avaliar seus alunos e dar feedback.
 
-![Five young students looking at a monitor - image by DALLE2](./images/students-by-DALLE2.png?WT.mc_id=academic-105485-koreyst)
+![Cinco jovens estudantes olhando para um monitor - imagem por DALLE2](./images/students-by-DALLE2.png?WT.mc_id=academic-105485-koreyst)
 
-To start, let’s define some basic concepts and terminology we’ll be using throughout the curriculum.
+Para começar, vamos definir alguns conceitos e termos básicos que usaremos ao longo do currículo.
 
-## How did we get Generative AI?
+## Como chegamos à IA Generativa?
 
-Despite the extraordinary _hype_ created lately by the announcement of generative AI models, this technology is decades in the making, with the first research efforts dating back to the 60s. We're now at a point with AI having human cognitive capabilities, like conversation as shown by for example [OpenAI ChatGPT](https://openai.com/chatgpt) or [Bing Chat](https://www.microsoft.com/edge/features/bing-chat?WT.mc_id=academic-105485-koreyst), which also uses a GPT model for the web search Bing conversations.
+Apesar do extraordinário _hype_ criado recentemente pelo anúncio de modelos de IA generativa, essa tecnologia tem décadas em desenvolvimento, com os primeiros esforços de pesquisa datando dos anos 60. Agora estamos em um ponto em que a IA possui capacidades cognitivas humanas, como conversação, como mostrado por exemplo pelo [OpenAI ChatGPT](https://openai.com/chatgpt) ou pelo [Bing Chat](https://www.microsoft.com/edge/features/bing-chat?WT.mc_id=academic-105485-koreyst), que também usa um modelo GPT para as conversas de busca da web do Bing.
 
-Backing up a bit, the very first prototypes of AI consisted of typewritten chatbots, relying on a knowledge base extracted from a group of experts and represented into a computer. The answers in the knowledge base were triggered by keywords appearing in the input text.
-However, it soon became clear that such an approach, using typewritten chatbots, did not scale well.
+Voltando um pouco, os primeiros protótipos de IA consistiam em chatbots escritos, baseados em uma base de conhecimento extraída de um grupo de especialistas e representada em um computador. As respostas na base de conhecimento eram acionadas por palavras-chave aparecendo no texto de entrada. No entanto, logo ficou claro que essa abordagem não escalava bem.
 
-### A statistical approach to AI: Machine Learning
+### Uma abordagem estatística para IA: Machine Learning
 
-A turning point arrived during the 90s, with the application of a statistical approach to text analysis. This led to the development of new algorithms – known as machine learning – capable of learning patterns from data without being explicitly programmed. This approach allows machines to simulate human language understanding: a statistical model is trained on text-label pairings, enabling the model to classify unknown input text with a pre-defined label representing the intention of the message.
+Um ponto de virada chegou durante os anos 90, com a aplicação de uma abordagem estatística à análise de texto. Isso levou ao desenvolvimento de novos algoritmos — conhecidos como machine learning — capazes de aprender padrões a partir de dados sem serem explicitamente programados. Essa abordagem permite que máquinas simulem a compreensão da linguagem humana: um modelo estatístico é treinado em pares texto-rótulo, permitindo que ele classifique um texto de entrada desconhecido com um rótulo pré-definido que representa a intenção da mensagem.
 
-### Neural networks and modern virtual assistants
+### Redes neurais e assistentes virtuais modernos
 
-In recent years, the technological evolution of hardware, capable of handling larger amounts of data and more complex computations, encouraged research in AI, leading to the development of advanced machine learning algorithms known as neural networks or deep learning algorithms.
+Nos últimos anos, a evolução tecnológica do hardware, capaz de lidar com maiores quantidades de dados e cálculos mais complexos, incentivou a pesquisa em IA, levando ao desenvolvimento de algoritmos avançados de machine learning conhecidos como redes neurais ou deep learning.
 
-Neural networks (and in particular Recurrent Neural Networks – RNNs) significantly enhanced natural language processing, enabling the representation of the meaning of text in a more meaningful way, valuing the context of a word in a sentence.
+Redes neurais (e, em particular, Redes Neurais Recorrentes – RNNs) melhoraram significativamente o processamento de linguagem natural, possibilitando a representação do significado do texto de maneira mais relevante, valorizando o contexto de uma palavra em uma frase.
 
-This is the technology that powered the virtual assistants born in the first decade of the new century, very proficient in interpreting human language, identifying a need, and performing an action to satisfy it – like answering with a pre-defined script or consuming a 3rd party service.
+É essa tecnologia que impulsionou os assistentes virtuais surgidos na primeira década do novo século, muito proficientes em interpretar a linguagem humana, identificar uma necessidade e executar uma ação para satisfazê-la — como responder com um roteiro pré-definido ou consumir um serviço de terceiros.
 
-### Present day, Generative AI
+### Hoje em dia, IA Generativa
 
-So that’s how we came to Generative AI today, which can be seen as a subset of deep learning.
+Assim chegamos à IA Generativa de hoje, que pode ser vista como um subconjunto de deep learning.
 
 ![AI, ML, DL and Generative AI](./images/AI-diagram.png?WT.mc_id=academic-105485-koreyst)
 
-After decades of research in the AI field, a new model architecture – called _Transformer_ – overcame the limits of RNNs, being able to get much longer sequences of text as input. Transformers are based on the attention mechanism, enabling the model to give different weights to the inputs it receives, ‘paying more attention’ where the most relevant information is concentrated, regardless of their order in the text sequence.
+Após décadas de pesquisa na área de IA, uma nova arquitetura de modelo — chamada _Transformer_ — superou os limites das RNNs, sendo capaz de processar sequências de texto muito mais longas como entrada. Transformers se baseiam no mecanismo de atenção, permitindo que o modelo atribua pesos diferentes às entradas que recebe, “prestando mais atenção” onde a informação mais relevante está concentrada, independentemente da ordem na sequência de texto.
 
-Most of the recent generative AI models – also known as Large Language Models (LLMs), since they work with textual inputs and outputs – are indeed based on this architecture. What’s interesting about these models – trained on a huge amount of unlabeled data from diverse sources like books, articles and websites – is that they can be adapted to a wide variety of tasks and generate grammatically correct text with a semblance of creativity. So, not only did they incredibly enhance the capacity of a machine to ‘understand’ an input text, but they enabled their capacity to generate an original response in human language.
+A maioria dos modelos recentes de IA generativa — também conhecidos como Grandes Modelos de Linguagem (LLMs), já que trabalham com entradas e saídas textuais — é, de fato, baseada nessa arquitetura. O interessante sobre esses modelos — treinados em uma enorme quantidade de dados não rotulados de fontes diversas como livros, artigos e sites — é que eles podem ser adaptados para uma ampla variedade de tarefas e gerar texto gramaticalmente correto com um semblante de criatividade. Assim, eles não apenas ampliaram incrivelmente a capacidade de uma máquina de “entender” um texto de entrada, mas também possibilitaram sua capacidade de gerar uma resposta original em linguagem humana.
 
-## How do large language models work?
+## Como funcionam os grandes modelos de linguagem?
 
-In the next chapter we are going to explore different types of Generative AI models, but for now let’s have a look at how large language models work, with a focus on OpenAI GPT (Generative Pre-trained Transformer) models.
+No próximo capítulo vamos explorar diferentes tipos de modelos de IA generativa, mas por enquanto vamos olhar como grandes modelos de linguagem funcionam, com foco nos modelos OpenAI GPT (Generative Pre-trained Transformer).
 
-- **Tokenizer, text to numbers**: Large Language Models receive a text as input and generate a text as output. However, being statistical models, they work much better with numbers than text sequences. That’s why every input to the model is processed by a tokenizer, before being used by the core model. A token is a chunk of text – consisting of a variable number of characters, so the tokenizer's main task is splitting the input into an array of tokens. Then, each token is mapped with a token index, which is the integer encoding of the original text chunk.
+- **Tokenizador, texto para números**: Grandes Modelos de Linguagem recebem um texto como entrada e geram um texto como saída. Contudo, por serem modelos estatísticos, eles funcionam muito melhor com números do que com sequências de texto. Por isso, toda entrada ao modelo é processada por um tokenizador antes de ser usada pelo modelo principal. Um token é um pedaço de texto — consistindo em um número variável de caracteres — então a tarefa principal do tokenizador é dividir a entrada em um array de tokens. Em seguida, cada token é mapeado para um índice de token, que é a codificação inteira do pedaço de texto original.
 
 ![Example of tokenization](./images/tokenizer-example.png?WT.mc_id=academic-105485-koreyst)
 
-- **Predicting output tokens**: Given n tokens as input (with max n varying from one model to another), the model is able to predict one token as output. This token is then incorporated into the input of the next iteration, in an expanding window pattern, enabling a better user experience of getting one (or multiple) sentence as an answer. This explains why, if you ever played with ChatGPT, you might have noticed that sometimes it looks like it stops in the middle of a sentence.
+- **Predição de tokens de saída**: Dado n tokens como entrada (com o valor máximo de n variando de um modelo para outro), o modelo é capaz de prever um token como saída. Esse token é então incorporado à entrada da próxima iteração, em um padrão de janela expansiva, possibilitando uma melhor experiência ao usuário ao obter uma ou várias frases como resposta. Isso explica por que, se você já brincou com o ChatGPT, pode ter percebido que às vezes ele parece parar no meio de uma frase.
 
-- **Selection process, probability distribution**: The output token is chosen by the model according to its probability of occurring after the current text sequence. This is because the model predicts a probability distribution over all possible ‘next tokens’, calculated based on its training. However, not always is the token with the highest probability chosen from the resulting distribution. A degree of randomness is added to this choice, in a way that the model acts in a non-deterministic fashion - we do not get the exact same output for the same input. This degree of randomness is added to simulate the process of creative thinking and it can be tuned using a model parameter called temperature.
+- **Processo de seleção, distribuição de probabilidade**: O token de saída é escolhido pelo modelo de acordo com sua probabilidade de ocorrer após a sequência de texto atual. Isso porque o modelo prevê uma distribuição de probabilidade sobre todos os possíveis “próximos tokens”, calculada com base em seu treinamento. No entanto, nem sempre é escolhido o token com maior probabilidade da distribuição resultante. Um grau de aleatoriedade é adicionado a essa escolha, de forma que o modelo opere de maneira não determinística — não obtemos a mesma saída exata para a mesma entrada. Esse grau de aleatoriedade é adicionado para simular o processo de pensamento criativo e pode ser ajustado usando um parâmetro do modelo chamado temperature.
 
-## How can our startup leverage Large Language Models?
+## Como nossa startup pode aproveitar Grandes Modelos de Linguagem?
 
-Now that we have a better understanding of the inner working of a large language model, let’s see some practical examples of the most common tasks they can perform pretty well, with an eye to our business scenario.
-We said that the main capability of a Large Language Model is _generating a text from scratch, starting from a textual input, written in natural language_.
+Agora que temos uma compreensão melhor do funcionamento interno de um grande modelo de linguagem, vamos ver alguns exemplos práticos das tarefas mais comuns que eles podem realizar muito bem, com foco em nosso cenário de negócio.
+Dissemos que a principal capacidade de um Grande Modelo de Linguagem é _gerar um texto do zero, a partir de uma entrada textual escrita em linguagem natural_.
 
-But what kind of textual input and output?
-The input of a large language model is known as a prompt, while the output is known as a completion, term that refers to the model mechanism of generating the next token to complete the current input. We are going to dive deep into what is a prompt and how to design it in a way to get the most out of our model. But for now, let’s just say that a prompt may include:
+Mas que tipo de entrada e saída textual?
+A entrada de um grande modelo de linguagem é conhecida como prompt, enquanto a saída é conhecida como completion, termo que se refere ao mecanismo do modelo de gerar o próximo token para completar a entrada atual. Vamos nos aprofundar no que é um prompt e como desenhá-lo para obter o máximo do nosso modelo. Mas, por agora, digamos apenas que um prompt pode incluir:
 
-- An **instruction** specifying the type of output we expect from the model. This instruction sometimes might embed some examples or some additional data.
+- Uma **instrução** especificando o tipo de saída que esperamos do modelo. Essa instrução às vezes pode incorporar alguns exemplos ou dados adicionais.
 
-  1. Summarization of an article, book, product reviews and more, along with extraction of insights from unstructured data.
+  1. Resumo de um artigo, livro, avaliações de produtos e muito mais, juntamente com extração de insights de dados não estruturados.
     
     ![Example of summarization](./images/summarization-example.png?WT.mc_id=academic-105485-koreyst)
   
-  2. Creative ideation and design of an article, an essay, an assignment or more.
+  2. Ideação criativa e elaboração de um artigo, redação, tarefa ou mais.
       
      ![Example of creative writing](./images/creative-writing-example.png?WT.mc_id=academic-105485-koreyst)
 
-- A **question**, asked in the form of a conversation with an agent.
+- Uma **pergunta**, feita na forma de uma conversa com um agente.
   
   ![Example of conversation](./images/conversation-example.png?WT.mc_id=academic-105485-koreyst)
 
-- A chunk of **text to complete**, which implicitly is an ask for writing assistance.
+- Um pedaço de **texto para completar**, que implicitamente é um pedido de assistência de escrita.
   
   ![Example of text completion](./images/text-completion-example.png?WT.mc_id=academic-105485-koreyst)
 
-- A chunk of **code** together with the ask of explaining and documenting it, or a comment asking to generate a piece of code performing a specific task.
+- Um pedaço de **código** junto com o pedido de explicá-lo e documentá-lo, ou um comentário pedindo para gerar um trecho de código que execute uma tarefa específica.
   
   ![Coding example](./images/coding-example.png?WT.mc_id=academic-105485-koreyst)
 
-The examples above are quite simple and are not intended to be an exhaustive demonstration of Large Language Models' capabilities. They are meant to show the potential of using generative AI, in particular but not limited to educational contexts.
+Os exemplos acima são bastante simples e não têm a intenção de ser uma demonstração exaustiva das capacidades dos Grandes Modelos de Linguagem. Eles servem para mostrar o potencial do uso da IA generativa, em contextos educacionais em particular, mas não se limitam a eles.
 
-Also, the output of a generative AI model is not perfect and sometimes the creativity of the model can work against it, resulting in an output which is a combination of words that the human user can interpret as a mystification of reality, or it can be offensive. Generative AI is not intelligent - at least in the more comprehensive definition of intelligence, including critical and creative reasoning or emotional intelligence; it is not deterministic, and it is not trustworthy, since fabrications, such as erroneous references, content, and statements, may be combined with correct information, and presented in a persuasive and confident manner. In the following lessons, we’ll be dealing with all these limitations and we’ll see what we can do to mitigate them.
+Além disso, a saída de um modelo de IA generativa não é perfeita e, às vezes, a criatividade do modelo pode jogar contra ele, resultando em uma saída que é uma combinação de palavras que o usuário humano pode interpretar como uma mistificação da realidade, ou pode ser ofensiva. IA generativa não é inteligente — pelo menos na definição mais ampla de inteligência, incluindo raciocínio crítico e criativo ou inteligência emocional; ela não é determinística e não é confiável, já que fabricações, como referências, conteúdo e afirmações incorretas, podem ser combinadas com informações corretas e apresentadas de maneira persuasiva e confiante. Nas próximas lições, lidaremos com todas essas limitações e veremos o que podemos fazer para mitigá-las.
 
-## Assignment
+## Exercício
 
-Your assignment is to read up more on [generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence?WT.mc_id=academic-105485-koreyst) and try to identify an area where you would add generative AI today that doesn't have it. How would the impact be different from doing it the "old way", can you do something you couldn't before, or are you faster? Write a 300 word summary on what your dream AI startup would look like and include headers like "Problem", "How I would use AI", "Impact" and optionally a business plan.
+Sua tarefa é ler mais sobre [IA generativa](https://en.wikipedia.org/wiki/Generative_artificial_intelligence?WT.mc_id=academic-105485-koreyst) e tentar identificar uma área em que você adicionaria IA generativa hoje, que ainda não a utiliza. Como o impacto seria diferente do “jeito antigo”? Você poderia fazer algo que não podia antes ou seria mais rápido? Escreva um resumo de 300 palavras sobre como seria sua startup de IA dos sonhos e inclua cabeçalhos como “Problema”, “Como eu usaria IA”, “Impacto” e opcionalmente um plano de negócios.
 
-If you did this task, you might even be ready to apply to Microsoft's incubator, [Microsoft for Startups Founders Hub](https://www.microsoft.com/startups?WT.mc_id=academic-105485-koreyst) we offer credits for both Azure, OpenAI, mentoring and much more, check it out!
+Se você fizer essa tarefa, pode até estar pronto para se inscrever no programa de incubação da Microsoft, o [Microsoft for Startups Founders Hub](https://www.microsoft.com/startups?WT.mc_id=academic-105485-koreyst): oferecemos créditos para Azure, OpenAI, mentoria e muito mais. Confira!
 
-## Knowledge check
+## Verificação de conhecimento
 
-What's true about large language models?
+O que é verdadeiro sobre grandes modelos de linguagem?
 
-1. You get the exact same response every time.
-1. It does things perfectly, great at adding numbers, produce working code etc.
-1. The response may vary despite using the same prompt. It's also great at giving you a first draft of something, be it text or code. But you need to improve on the results.
+1. Você obtém a mesma resposta exata todas as vezes.
+1. Eles fazem as coisas perfeitamente, são ótimos em somar números e produzir código funcional, etc.
+1. A resposta pode variar apesar de usar o mesmo prompt. Também é ótimo para lhe dar um primeiro rascunho de algo, seja texto ou código. Mas você precisa aperfeiçoar os resultados.
 
-A: 3, an LLM is non-deterministic, the response varies, however, you can control its variance via a temperature setting. You also shouldn't expect it to do things perfectly, it's here to do the heavy-lifting for you which often means you get a good first attempt at something that you need to gradually improve.
+R: 3, um LLM é não determinístico, a resposta varia; no entanto, você pode controlar sua variância por meio da configuração de temperatura. Você também não deve esperar que ele faça as coisas perfeitamente; ele está aqui para fazer o trabalho pesado por você, o que muitas vezes significa que você obtém uma boa primeira tentativa em algo que precisa melhorar gradualmente.
 
-## Great Work! Continue the Journey
+## Excelente trabalho! Continue sua jornada
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Após concluir esta lição, confira nossa [coleção de aprendizado de IA generativa](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) para continuar desenvolvendo seu conhecimento em IA generativa!
 
-Head over to Lesson 2 where we will look at how to [explore and compare different LLM types](../02-exploring-and-comparing-different-llms/README.md?WT.mc_id=academic-105485-koreyst)!
+Vá para a Lição 2, onde veremos como [explorar e comparar diferentes tipos de LLMs](../02-exploring-and-comparing-different-llms/README.md?WT.mc_id=academic-105485-koreyst)!
