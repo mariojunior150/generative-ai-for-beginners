@@ -1,130 +1,130 @@
-# Building a Search Applications
+# Construindo Aplicativos de Busca
 
-[![Introduction to Generative AI and Large Language Models](./images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/W0-nzXjOjr0?si=GcsqiTTvd7RKbo7V)
+[![Introdução a IA Generativa e Modelos de Linguagem](./images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/W0-nzXjOjr0?si=GcsqiTTvd7RKbo7V)
 
-> > _Click the image above to view video of this lesson_
+> _(Clique na imagem acima para assistir ao vídeo desta lição)_
 
-There's more to LLMs than chatbots and text generation. It's also possible to build search applications using Embeddings. Embeddings are numerical representations of data also known as vectors, and can be used for semantic search for data.
+LLMs vão além de chatbots e geração de texto — também é possível construir aplicativos de busca usando Embeddings. Embeddings são representações numéricas de dados (também chamadas vetores) e podem ser usadas para busca semântica sobre conteúdo.
 
-In this lesson, you are going to build a search application for our education startup. Our startup is a non-profit organization that provides free education to students in developing countries. Our startup has a large number of YouTube videos that students can use to learn about AI. Our startup wants to build a search application that allows students to search for a YouTube video by typing a question.
+Nesta lição, você vai construir um aplicativo de busca para nossa startup educacional. Nossa startup é uma organização sem fins lucrativos que fornece educação gratuita a estudantes em países em desenvolvimento. Temos muitos vídeos no YouTube que os estudantes podem usar para aprender sobre IA. Queremos criar um aplicativo de busca que permita aos estudantes procurar um vídeo do YouTube digitando uma pergunta.
 
-For example, a student might type in 'What are Jupyter Notebooks?' or 'What is Azure ML' and the search application will return a list of YouTube videos that are relevant to the question, and better still, the search application will return a link to the place in the video where the answer to the question is located.
+Por exemplo, um estudante pode digitar “O que são Jupyter Notebooks?” ou “O que é Azure ML” e o aplicativo de busca retornará uma lista de vídeos relevantes — e, melhor ainda, um link para o ponto exato do vídeo onde a resposta é abordada.
 
-## Introduction
+## Introdução
 
-In this lesson, we will cover:
+Nesta lição, cobriremos:
 
-- Semantic vs Keyword search.
-- What are Text Embeddings.
-- Creating a Text Embeddings Index.
-- Searching a Text Embeddings Index.
+- Busca semântica vs busca por palavras-chave.
+- O que são Embeddings de texto.
+- Como criar um índice de Embeddings de texto.
+- Como buscar em um índice de Embeddings de texto.
 
-## Learning Goals
+## Objetivos de Aprendizagem
 
-After completing this lesson, you will be able to:
+Ao concluir esta lição, você será capaz de:
 
-- Tell the difference between semantic and keyword search.
-- Explain what Text Embeddings are.
-- Create an application using Embeddings to search for data.
+- Diferenciar busca semântica de busca por palavra-chave.
+- Explicar o que são Embeddings de texto.
+- Criar uma aplicação que usa Embeddings para buscar dados.
 
-## Why build a search application?
+## Por que construir um aplicativo de busca?
 
-Creating a search application will help you understand how to use Embeddings to search for data. You will also learn how to build a search application that can be used by students to find information quickly.
+Construir um aplicativo de busca ajuda a entender como usar Embeddings para encontrar informação relevante. Você também aprenderá a criar um sistema que permita aos estudantes encontrar respostas rapidamente.
 
-The lesson includes an Embedding Index of the YouTube transcripts for the Microsoft [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) YouTube channel. The AI Show is a YouTube channel that teaches you about AI and machine learning. The Embedding Index contains the Embeddings for each of the YouTube transcripts up until Oct 2023. You will use the Embedding Index to build a search application for our startup. The search application returns a link to the place in the video where the answer to the question is located. This is a great way for students to find the information they need quickly.
+A lição inclui um índice de Embeddings dos transcripts do canal Microsoft [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1). O índice contém os Embeddings dos transcripts até outubro de 2023. Você usará esse índice para montar o aplicativo de busca da nossa startup. O app retorna um link com timestamp para o trecho do vídeo onde a resposta aparece — uma forma prática de ajudar estudantes a encontrar o que precisam rapidamente.
 
-The following is an example of a semantic query for the question 'can you use rstudio with azure ml?'. Check out the YouTube url, you'll see the url contains a timestamp that takes you to the place in the video where the answer to the question is located.
+O exemplo abaixo mostra uma consulta semântica para a pergunta 'can you use rstudio with azure ml?'. Observe a URL do YouTube; ela contém um timestamp que leva você até o ponto do vídeo onde a resposta para a pergunta é abordada.
 
-![Semantic query for the question "can you use rstudio with Azure ML"](./images/query-results.png?WT.mc_id=academic-105485-koreyst)
+![Consulta semântica para a pergunta "can you use rstudio with Azure ML"](./images/query-results.png?WT.mc_id=academic-105485-koreyst)
 
-## What is semantic search?
+## O que é busca semântica?
 
-Now you might be wondering, what is semantic search? Semantic search is a search technique that uses the semantics, or meaning, of the words in a query to return relevant results.
+Você pode estar se perguntando: o que é busca semântica? Busca semântica é uma técnica que usa o significado (semântica) das palavras em uma consulta para retornar resultados relevantes.
 
-Here is an example of a semantic search. Let's say you were looking to buy a car, you might search for 'my dream car', semantic search understands that you are not `dreaming` about a car, but rather you are looking to buy your `ideal` car. Semantic search understands your intention and returns relevant results. The alternative is `keyword search` which would literally search for dreams about cars and often returns irrelevant results.
+Por exemplo, se você procura por “meu carro dos sonhos”, a busca semântica entende que você não está sonhando sobre um carro, mas procurando seu carro `ideal`. Já a busca por palavra-chave faria uma busca literal por termos como “sonho” e “carro”, frequentemente retornando resultados irrelevantes.
 
-## What are Text Embeddings?
+## O que são Embeddings de Texto?
 
-[Text embeddings](https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst) are a text representation technique used in [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst). Text embeddings are semantic numerical representations of text. Embeddings are used to represent data in a way that is easy for a machine to understand. There are many models for building text embeddings, in this lesson, we will focus on generating embeddings using the OpenAI Embedding Model.
+[Text embeddings](https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst) são uma técnica de representação de texto usada em [processamento de linguagem natural](https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst). Embeddings de texto são representações numéricas semânticas de texto. Eles são usados para representar dados de forma que seja fácil para uma máquina entender. Existem muitos modelos para gerar embeddings de texto; nesta lição, vamos nos concentrar em gerar embeddings usando o modelo de Embeddings do OpenAI.
 
-Here's an example, imagine the following text is in a transcript from one of the episodes on the AI Show YouTube channel:
+Por exemplo, imagine o trecho abaixo em um transcript de um episódio do AI Show:
 
 ```text
 Today we are going to learn about Azure Machine Learning.
 ```
 
-We'd pass the text to the OpenAI Embedding API and it would return the following embedding consisting of 1536 numbers aka a vector. Each number in the vector represents a different aspect of the text. For brevity, here are the first 10 numbers in the vector.
+Enviaríamos o texto para a API de Embeddings do OpenAI e ela retornaria o seguinte embedding composto por 1536 números, também chamado de vetor. Cada número no vetor representa um aspecto diferente do texto. Para simplificar, aqui estão os primeiros 10 números do vetor.
 
 ```python
 [-0.006655829958617687, 0.0026128944009542465, 0.008792596869170666, -0.02446001023054123, -0.008540431968867779, 0.022071078419685364, -0.010703742504119873, 0.003311325330287218, -0.011632772162556648, -0.02187200076878071, ...]
 ```
 
-## How is the Embedding index created?
+## Como o índice de Embeddings foi criado?
 
-The Embedding index for this lesson was created with a series of Python scripts. You'll find the scripts along with instructions in the [README](./scripts/README.md?WT.mc_id=academic-105485-koreyst) in the 'scripts` folder for this lesson. You don't need to run these scripts to complete this lesson as the Embedding Index is provided for you.
+O índice de Embeddings desta lição foi gerado por uma série de scripts Python. Você encontra os scripts e instruções no [README](./scripts/README.md?WT.mc_id=academic-105485-koreyst) na pasta `scripts` desta lição. Não é necessário executar esses scripts para completar a lição, pois o índice já está fornecido.
 
-The scripts perform the following operations:
+Os scripts executam as seguintes etapas:
 
-1. The transcript for each YouTube video in the [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) playlist is downloaded.
-2. Using [OpenAI Functions](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst), an attempt is made to extract the speaker name from the first 3 minutes of the YouTube transcript. The speaker name for each video is stored in the Embedding Index named `embedding_index_3m.json`.
-3. The transcript text is then chunked into **3 minute text segments**. The segment includes about 20 words overlapping from the next segment to ensure that the Embedding for the segment is not cut off and to provide better search context.
-4. Each text segment is then passed to the OpenAI Chat API to summarize the text into 60 words. The summary is also stored in the Embedding Index `embedding_index_3m.json`.
-5. Finally, the segment text is passed to the OpenAI Embedding API. The Embedding API returns a vector of 1536 numbers that represent the semantic meaning of the segment. The segment along with the OpenAI Embedding vector is stored in an Embedding Index `embedding_index_3m.json`.
+1. A transcrição de cada vídeo do YouTube na playlist [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) é baixada.
+2. Usando [OpenAI Functions](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst), é feita uma tentativa de extrair o nome do palestrante dos primeiros 3 minutos da transcrição do YouTube. O nome do palestrante de cada vídeo é armazenado no índice de embeddings chamado `embedding_index_3m.json`.
+3. O texto da transcrição é então dividido em segmentos de texto de **3 minutos**. O segmento inclui cerca de 20 palavras de sobreposição com o próximo segmento para garantir que o Embedding do segmento não seja cortado e para fornecer melhor contexto de busca.
+4. Cada segmento de texto é então enviado para a API de Chat do OpenAI para resumir o texto em 60 palavras. O resumo também é armazenado no índice de embeddings `embedding_index_3m.json`.
+5. Finalmente, o texto do segmento é enviado para a API de Embeddings do OpenAI. A API de Embeddings retorna um vetor de 1536 números que representam o significado semântico do segmento. O segmento junto com o vetor de Embeddings do OpenAI é armazenado no índice de embeddings `embedding_index_3m.json`.
 
-### Vector Databases
+### Bancos de dados vetoriais
 
-For lesson simplicity, the Embedding Index is stored in a JSON file named `embedding_index_3m.json` and loaded into a Pandas DataFrame. However, in production, the Embedding Index would be stored in a vector database such as [Azure Cognitive Search](https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst), [Redis](https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst), [Pinecone](https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst), [Weaviate](https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst), to name but a few.
+Para simplificar a lição, o índice de Embeddings é armazenado em um arquivo JSON chamado `embedding_index_3m.json` e carregado em um DataFrame do Pandas. No entanto, em produção, o índice de Embeddings seria armazenado em um banco de dados vetorial como [Azure Cognitive Search](https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst), [Redis](https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst), [Pinecone](https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst), [Weaviate](https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst), entre outros.
 
-## Understanding cosine similarity
+## Entendendo similaridade cosseno
 
-We've learned about text embeddings, the next step is to learn how to use text embeddings to search for data and in particular find the most similar embeddings to a given query using cosine similarity.
+Já aprendemos sobre embeddings de texto; o próximo passo é aprender como usar embeddings de texto para buscar dados e, em particular, encontrar os embeddings mais similares a uma determinada consulta usando similaridade cosseno.
 
-### What is cosine similarity?
+### O que é similaridade cosseno?
 
-Cosine similarity is a measure of similarity between two vectors, you'll also hear this referred to as `nearest neighbor search`. To perform a cosine similarity search you need to _vectorize_ for _query_ text using the OpenAI Embedding API. Then calculate the _cosine similarity_ between the query vector and each vector in the Embedding Index. Remember, the Embedding Index has a vector for each YouTube transcript text segment. Finally, sort the results by cosine similarity and the text segments with the highest cosine similarity are the most similar to the query.
+A similaridade cosseno é uma medida de similaridade entre dois vetores; você também ouvirá isso referido como `busca por vizinhos mais próximos`. Para executar uma busca por similaridade cosseno, você precisa vetorizar o texto da consulta usando a API de Embeddings do OpenAI. Depois, calcule a similaridade cosseno entre o vetor da consulta e cada vetor no índice de Embeddings. Lembre-se de que o índice de Embeddings tem um vetor para cada segmento de texto da transcrição do YouTube. Finalmente, ordene os resultados pela similaridade cosseno e os segmentos de texto com maior similaridade cosseno serão os mais similares à consulta.
 
-From a mathematic perspective, cosine similarity measures the cosine of the angle between two vectors projected in a multidimensional space. This measurement is beneficial, because if two documents are far apart by Euclidean distance because of size, they could still have a smaller angle between them and therefore higher cosine similarity. For more information about cosine similarity equations, see [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst).
+De uma perspectiva matemática, a similaridade cosseno mede o cosseno do ângulo entre dois vetores projetados em um espaço multidimensional. Essa medida é benéfica porque, se dois documentos estiverem distantes pela distância euclidiana devido ao tamanho, eles ainda podem ter um ângulo menor entre eles e, portanto, uma similaridade cosseno maior. Para mais informações sobre equações de similaridade cosseno, veja [Similaridade cosseno](https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst).
 
-## Building your first search application
+## Construindo seu primeiro aplicativo de busca
 
-Next, we're going to learn how to build a search application using Embeddings. The search application will allow students to search for a video by typing a question. The search application will return a list of videos that are relevant to the question. The search application will also return a link to the place in the video where the answer to the question is located.
+Agora, vamos aprender como construir um aplicativo de busca usando Embeddings. O aplicativo de busca permitirá que os estudantes pesquisem um vídeo digitando uma pergunta. O aplicativo de busca retornará uma lista de vídeos relevantes à pergunta. O aplicativo de busca também retornará um link para o ponto do vídeo onde a resposta para a pergunta está localizada.
 
-This solution was built and tested on Windows 11, macOS, and Ubuntu 22.04 using Python 3.10 or later. You can download Python from [python.org](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
+Esta solução foi desenvolvida e testada no Windows 11, macOS e Ubuntu 22.04 usando Python 3.10 ou superior. Baixe Python em [python.org](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
 
-## Assignment - building a search application, to enable students
+## Tarefa — construir um aplicativo de busca para estudantes
 
-We introduced our startup at the beginning of this lesson. Now it's time to enable the students to build a search application for their assessments.
+Apresentamos nossa startup no início desta lição. Agora é hora de permitir que os estudantes construam um aplicativo de busca para seus trabalhos avaliativos.
 
-In this assignment, you will create the Azure OpenAI Services that will be used to build the search application. You will create the following Azure OpenAI Services. You'll need an Azure subscription to complete this assignment.
+Neste exercício, você criará os Serviços Azure OpenAI que serão usados para construir o aplicativo de busca. Você criará os seguintes Serviços Azure OpenAI. Você precisará de uma assinatura do Azure para concluir este exercício.
 
-### Start the Azure Cloud Shell
+### Inicie o Azure Cloud Shell
 
-1. Sign in to the [Azure portal](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst).
-2. Select the Cloud Shell icon in the upper-right corner of the Azure portal.
-3. Select **Bash** for the environment type.
+1. Faça login no [portal do Azure](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst).
+2. Selecione o ícone do Cloud Shell no canto superior direito do portal do Azure.
+3. Selecione **Bash** como o tipo de ambiente.
 
-#### Create a resource group
+#### Crie um grupo de recursos
 
-> For these instructions, we're using the resource group named "semantic-video-search" in East US.
-> You can change the name of the resource group, but when changing the location for the resources,
-> check the [model availability table](https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst).
+> Para estas instruções, estamos usando o grupo de recursos chamado "semantic-video-search" em East US.
+> Você pode alterar o nome do grupo de recursos, mas ao mudar a localização dos recursos,
+> verifique a [tabela de disponibilidade de modelos](https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst).
 
 ```shell
 az group create --name semantic-video-search --location eastus
 ```
 
-#### Create an Azure OpenAI Service resource
+#### Crie um recurso Azure OpenAI Service
 
-From the Azure Cloud Shell, run the following command to create an Azure OpenAI Service resource.
+No Cloud Shell, execute este comando para criar o recurso Azure OpenAI Service:
 
 ```shell
 az cognitiveservices account create --name semantic-video-openai --resource-group semantic-video-search \
     --location eastus --kind OpenAI --sku s0
 ```
 
-#### Get the endpoint and keys for usage in this application
+#### Obtenha endpoint e chaves para uso na aplicação
 
-From the Azure Cloud Shell, run the following commands to get the endpoint and keys for the Azure OpenAI Service resource.
+No Cloud Shell, execute os comandos abaixo para recuperar o endpoint e a chave do recurso:
 
 ```shell
 az cognitiveservices account show --name semantic-video-openai \
@@ -133,9 +133,9 @@ az cognitiveservices account keys list --name semantic-video-openai \
    --resource-group semantic-video-search | jq -r .key1
 ```
 
-#### Deploy the OpenAI Embedding model
+#### Faça o deploy do modelo de Embeddings OpenAI
 
-From the Azure Cloud Shell, run the following command to deploy the OpenAI Embedding model.
+No Cloud Shell, execute este comando para implantar o modelo de Embeddings OpenAI:
 
 ```shell
 az cognitiveservices account deployment create \
@@ -148,16 +148,16 @@ az cognitiveservices account deployment create \
     --sku-capacity 100 --sku-name "Standard"
 ```
 
-## Solution
+## Solução
 
-Open the [solution notebook](./python/aoai-solution.ipynb?WT.mc_id=academic-105485-koreyst) in GitHub Codespaces and follow the instructions in the Jupyter Notebook.
+Abra o [notebook de solução](./python/aoai-solution.ipynb?WT.mc_id=academic-105485-koreyst) no GitHub Codespaces e siga as instruções.
 
-When you run the notebook, you'll be prompted to enter a query. The input box will look like this:
+Quando você executar o notebook, será solicitado que insira uma consulta. A caixa de entrada se parecerá com isto:
 
-![Input box for the user to input a query](./images/notebook-search.png?WT.mc_id=academic-105485-koreyst)
+![Caixa de entrada para o usuário inserir uma consulta](./images/notebook-search.png?WT.mc_id=academic-105485-koreyst)
 
-## Great Work! Continue Your Learning
+## Excelente trabalho! Continue seu aprendizado
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Após concluir esta lição, confira nossa [coleção de aprendizado de IA Generativa](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) para continuar evoluindo seu conhecimento em IA Generativa!
 
-Head over to Lesson 9 where we will look at how to [build image generation applications](../09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+Vá para a Lição 9, onde veremos como [construir aplicativos de geração de imagens](../09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)!

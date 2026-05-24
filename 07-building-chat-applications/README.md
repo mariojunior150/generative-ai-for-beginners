@@ -1,66 +1,64 @@
-# Building Generative AI-Powered Chat Applications
+# Construindo Aplicativos de Chat com IA Generativa
 
 [![Building Generative AI-Powered Chat Applications](./images/07-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/R9V0ZY1BEQo?si=IHuU-fS9YWT8s4sA)
 
-> _(Click the image above to view video of this lesson)_
+> _(Clique na imagem acima para assistir ao vídeo desta lição)_
 
-Now that we've seen how we can build text-generation apps, let's look into chat applications.
+Agora que vimos como construir apps de geração de texto, vamos explorar aplicações de chat.
 
-Chat applications have become integrated into our daily lives, offering more than just a means of casual conversation. They're integral parts of customer service, technical support, and even sophisticated advisory systems. It's likely that you've gotten some help from a chat application not too long ago. As we integrate more advanced technologies like generative AI into these platforms, the complexity increases and so does the challenges.
+Aplicativos de chat já fazem parte do nosso dia a dia — vão além de conversas casuais e são peças centrais em atendimento ao cliente, suporte técnico e sistemas de aconselhamento. Ao integrar tecnologias avançadas como IA generativa, a complexidade e os desafios também aumentam.
 
-Some questions we need to be answered are:
+Algumas perguntas importantes são:
 
-- **Building the app**. How do we efficiently build and seamlessly integrate these AI-powered applications for specific use cases?
-- **Monitoring**. Once deployed, how can we monitor and ensure that the applications are operating at the highest level of quality, both in terms of functionality and adhering to the [six principles of responsible AI](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst)?
+- **Construção do app**: Como construir e integrar eficientemente essas aplicações com casos de uso específicos?
+- **Monitoramento**: Depois de implantadas, como monitorar e garantir que operem com qualidade e em conformidade com os [seis princípios de IA responsável](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst)?
 
-As we move further into an age defined by automation and seamless human-machine interactions, understanding how generative AI transforms the scope, depth, and adaptability of chat applications becomes essential. This lesson will investigate the aspects of architecture that support these intricate systems, delve into the methodologies for fine-tuning them for domain-specific tasks, and evaluate the metrics and considerations pertinent to ensuring responsible AI deployment.
+Nesta lição investigaremos arquiteturas que suportam esses sistemas, metodologias para customizá-los a tarefas de domínio e métricas/considerações para um uso responsável de IA.
 
-## Introduction
+## Introdução
 
-This lesson covers:
+Esta lição cobre:
 
-- Techniques for efficiently building and integrating chat applications.
-- How to apply customization and fine-tuning to applications.
-- Strategies and considerations to effectively monitor chat applications.
+- Técnicas para construir e integrar aplicações de chat de forma eficiente.
+- Como aplicar customização e fine-tuning em aplicações.
+- Estratégias e considerações para monitorar aplicações de chat.
 
-## Learning Goals
+## Objetivos de Aprendizagem
 
-By the end of this lesson, you'll be able to:
+Ao final desta lição, você será capaz de:
 
-- Describe considerations for building and integrating chat applications into existing systems.
-- Customize chat applications for specific use-cases.
-- Identify key metrics and considerations to effectively monitor and maintain the quality of AI-powered chat applications.
-- Ensure chat applications leverage AI responsibly.
+- Descrever considerações para integrar aplicações de chat a sistemas existentes.
+- Customizar aplicações de chat para casos de uso específicos.
+- Identificar métricas e considerações para monitorar e manter a qualidade de aplicações com IA.
+- Garantir que aplicações de chat façam uso responsável da IA.
 
-## Integrating Generative AI into Chat Applications
+## Integrando IA Generativa em Aplicativos de Chat
 
-Elevating chat applications through generative AI isn't only centered around making them smarter; it's about optimizing their architecture, performance, and user interface to deliver a quality user experience. This involves investigating the architectural foundations, API integrations, and user interface considerations. This section aims to offer you a comprehensive roadmap for navigating these complex landscapes, whether you're plugging them into existing systems or building them as stand-alone platforms.
+Elevar um aplicativo de chat com IA generativa envolve mais do que torná-lo “mais inteligente”: trata-se de otimizar arquitetura, desempenho e interface para oferecer uma boa experiência ao usuário. Isso inclui fundamentos arquiteturais, integrações de API e considerações de interface. Esta seção oferece um roteiro para navegar por essas decisões, seja para integrar em sistemas existentes ou construir plataformas independentes.
 
-By the end of this section, you'll be equipped with the expertise needed to efficiently construct and incorporate chat applications.
+Ao final desta seção, você terá conhecimentos necessários para construir e incorporar aplicações de chat de forma eficiente.
 
-### Chatbot or Chat application?
+### Chatbot ou aplicação de chat?
 
-Before we dive into building chat applications, let's compare 'chatbots' against 'AI-powered chat applications,' which serve distinct roles and functionalities. A chatbot's main purpose is to automate specific conversational tasks, such as answering frequently asked questions or tracking a package. It's typically governed by rule-based logic or complex AI algorithms. In contrast, an AI-powered chat application is a far more expansive environment designed to facilitate various forms of digital communication, such as text, voice, and video chats among human users. Its defining feature is the integration of a generative AI model that simulates nuanced, human-like conversations, generating responses based on a wide variety of input and contextual cues. A generative AI powered chat application can engage in open-domain discussions, adapt to evolving conversational contexts, and even produce creative or complex dialogue.
+Antes de começar a construir, comparemos “chatbots” com “aplicações de chat com IA” — eles têm papéis e funcionalidades diferentes. Um chatbot costuma automatizar tarefas específicas (responder perguntas frequentes, rastrear envios), normalmente com lógica baseada em regras ou modelos especializados. Em contraste, uma aplicação de chat com IA generativa é um ambiente mais amplo, capaz de suportar texto, voz e vídeo, e que integra um modelo generativo para produzir respostas mais humanas e contextualizadas. Uma aplicação com IA generativa pode dialogar em domínio aberto, adaptar-se ao contexto e gerar respostas criativas ou complexas.
 
-The table below outlines the key differences and similarities to help us understand their unique roles in digital communication.
-
-| Chatbot                               | Generative AI-Powered Chat Application |
+| Chatbot                               | Aplicação de Chat com IA Generativa     |
 | ------------------------------------- | -------------------------------------- |
-| Task-Focused and rule based           | Context-aware                          |
-| Often integrated into larger systems  | May host one or multiple chatbots      |
-| Limited to programmed functions       | Incorporates generative AI models      |
-| Specialized & structured interactions | Capable of open-domain discussions     |
+| Focada em tarefas e baseada em regras | Consciente de contexto                  |
+| Frequentemente parte de sistemas maiores| Pode hospedar um ou vários chatbots     |
+| Limitada a funções programadas         | Incorpora modelos generativos           |
+| Interações especializadas e estruturadas | Capaz de diálogos em domínio aberto   |
 
-### Leveraging pre-built functionalities with SDKs and APIs
+### Aproveitando SDKs e APIs prontas
 
-When building a chat application, a great first step is to assess what is already out there. Using SDKs and APIs to build chat applications is an advantageous strategy for a variety of reasons. By integrating well-documented SDKs and APIs, you're strategically positioning your application for long-term success, addressing scalability and maintenance concerns.
+Ao construir um app de chat, avalie primeiro o que já existe. Usar SDKs e APIs bem documentados é vantajoso:
 
-- **Expedites the development process and reduces overhead**: Relying on pre-built functionalities instead of the expensive process of building them yourself allows you to focus on other aspects of your application that you may find more important, such as business logic.
-- **Better performance**: When building functionality from scratch, you'll eventually ask yourself "How does it scale? Is this application capable of handling a sudden influx of users?" Well maintained SDK and APIs often have built in solutions for these concerns.
-- **Easier maintenance**: Updates and improvements are easier to manage as most APIs and SDKs simply require an update to a library when a newer version is released.
-- **Access to cutting edge technology**: Leveraging models that have been fined tuned and trained on extensive datasets provides your application with natural language capabilities.
+- **Acelera o desenvolvimento e reduz esforço**: permite focar em diferenciais do negócio em vez de reinventar funcionalidades.
+- **Melhor desempenho e escalabilidade**: SDKs maduros costumam tratar escala e resiliência.
+- **Manutenção simplificada**: atualizações são feitas via atualização da dependência.
+- **Acesso a tecnologias avançadas**: modelos ajustados e treinados em grandes conjuntos de dados.
 
-Accessing functionality of an SDK or API typically involves obtaining permission to use the provided services, which is often through the use of a unique key or authentication token. We'll use the OpenAI Python Library to explore what this looks like. You can also try it out on your own in the following [notebook for OpenAI](./python/oai-assignment.ipynb?WT.mc_id=academic-105485-koreyst) or [notebook for Azure OpenAI Services](./python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreys) for this lesson.
+Normalmente, o acesso a essas funcionalidades exige uma chave/credencial. Usaremos a OpenAI Python Library para exemplos; veja também os notebooks da lição: [notebook OpenAI](./python/oai-assignment.ipynb?WT.mc_id=academic-105485-koreyst) e [notebook Azure OpenAI](./python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreys).
 
 ```python
 import os
@@ -75,110 +73,99 @@ client = OpenAI(
 chat_completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Suggest two titles for an instructional lesson on chat applications for generative AI."}])
 ```
 
-The above example uses the GPT-3.5 Turbo model to complete the prompt, but notice that the API key is set prior to doing so. You'd receive an error if you didn't set the key.
+O exemplo acima usa `gpt-3.5-turbo` e pressupõe que a chave esteja definida — sem ela, ocorrerá um erro.
 
-## User Experience (UX)
+## Experiência do Usuário (UX)
 
-General UX principles apply to chat applications, but here are some additional considerations that become particularly important due to the machine learning components involved.
+Princípios gerais de UX se aplicam, mas há considerações específicas quando ML está envolvido:
 
-- **Mechanism for addressing ambiguity**: Generative AI models occasionally generate ambiguous answers. A feature that allows users to ask for clarification can be helpful should they come across this problem.
-- **Context retention**: Advanced generative AI models have the ability to remember context within a conversation, which can be a necessary asset to the user experience. Giving users the ability to control and manage context improves the user experience, but introduces the risk of retaining sensitive user information. Considerations for how long this information is stored, such as introducing a retention policy, can balance the need for context against privacy.
-- **Personalization**: With the ability to learn and adapt, AI models offer an individualized experience for a user. Tailoring the user experience through features like user profiles not only makes the user feel understood, but it also helps their pursuit of finding specific answers, creating a more efficient and satisfying interaction.
+- **Mecanismo para lidar com ambiguidade**: permita que usuários peçam esclarecimentos quando as respostas forem ambíguas.
+- **Retenção de contexto**: modelos avançados lembram o contexto da conversa; dê ao usuário controle sobre isso e defina políticas de retenção para evitar vazamento de dados sensíveis.
+- **Personalização**: perfis de usuário (ex.: “instruções personalizadas”) ajudam a adaptar respostas ao contexto do usuário.
 
-One such example of personalization is the "Custom instructions" settings in OpenAI's ChatGPT. It allows you to provide information about yourself that may be important context for your prompts. Here's an example of a custom instruction.
+Um exemplo de personalização é a funcionalidade “Custom instructions” do ChatGPT, que permite fornecer informações sobre o usuário para contextualizar respostas.
 
 ![Custom Instructions Settings in ChatGPT](./images/custom-instructions.png?WT.mc_id=academic-105485-koreyst)
 
-This "profile" prompts ChatGPT to create a lesson plan on linked lists. Notice that ChatGPT takes into account that the user may want a more in depth lesson plan based on her experience.
-
 ![A prompt in ChatGPT for a lesson plan about linked lists](./images/lesson-plan-prompt.png?WT.mc_id=academic-105485-koreyst)
 
-### Microsoft's System Message Framework for Large Language Models
+### Microsoft: System Message Framework para LLMs
 
-[Microsoft has provided guidance](https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst) for writing effective system messages when generating responses from LLMs broken down into 4 areas:
+[A Microsoft providencia orientações](https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst) para escrever mensagens de sistema eficazes, cobrindo:
 
-1. Defining who the model is for, as well as its capabilities and limitations.
-2. Defining the model's output format.
-3. Providing specific examples that demonstrate intended behavior of the model.
-4. Providing additional behavioral guardrails.
+1. Definir quem é o modelo e suas capacidades/limitações.
+2. Definir o formato de saída esperado.
+3. Fornecer exemplos que demonstrem o comportamento desejado.
+4. Incluir guardrails comportamentais adicionais.
 
-### Accessibility
+### Acessibilidade
 
-Whether a user has visual, auditory, motor, or cognitive impairments, a well-designed chat application should be usable by all. The following list breaks down specific features aimed at enhancing accessibility for various user impairments.
+Projete para usuários com diferentes necessidades (visual, auditiva, motora, cognitiva):
 
-- **Features for Visual Impairment**: High contrast themes and resizable text, screen reader compatibility.
-- **Features for Auditory Impairment**: Text-to-speech and speech-to-text functions, visual cues for audio notifications.
-- **Features for Motor Impairment**: Keyboard navigation support, voice commands.
-- **Features for Cognitive Impairment**: Simplified language options.
+- **Visual**: temas de alto contraste, texto redimensionável, compatibilidade com leitores de tela.
+- **Auditiva**: funções de texto-para-fala e fala-para-texto, indicações visuais para notificações.
+- **Motora**: suporte a navegação por teclado, comandos de voz.
+- **Cognitiva**: opções de linguagem simplificada.
 
-## Customization and Fine-tuning for Domain-Specific Language Models
+## Customização e Fine-tuning para Modelos de Linguagem de Domínio
 
-Imagine a chat application that understands your company's jargon and anticipates the specific queries its user base commonly has. There are a couple of approaches worth mentioning:
+Imagine um chat que entende a terminologia da sua empresa e antecipa dúvidas comuns. Algumas abordagens:
 
-- **Leveraging DSL models**. DSL stands for domain specific language. You can leverage a so called DSL model trained on a specific domain to understand it's concepts and scenarios.
-- **Apply fine-tuning**. Fine-tuning is the process of further training your model with specific data.
+- **Modelos de linguagem de domínio (DSL)**: treinar ou usar modelos especializados no domínio.
+- **Fine-tuning**: adaptar um modelo pré-treinado com dados específicos.
 
-## Customization: Using a DSL
+## Customização: Usando um DSL
 
-Leveraging a domain-specific language models (DSL Models) can enhance user engagement and by providing specialized, contextually relevant interactions. It's a model that is trained or fine-tuned to understand and generate text related to a specific field, industry, or subject. Options for using a DSL model can vary from training one from scratch, to using pre-existing ones through SDKs and APIs. Another option is fine-tuning, which involves taking an existing pre-trained model and adapting it for a specific domain.
+Modelos DSL fornecem interações mais contextuais e relevantes para um setor/assunto. Você pode treinar um modelo do zero, usar um existente via SDKs, ou aplicar fine-tuning para adaptar um modelo pré-treinado ao seu domínio.
 
-## Customization: Apply fine-tuning
+## Customização: Aplicar fine-tuning
 
-Fine-tuning is often considered when a pre-trained model falls short in a specialized domain or specific task.
+Use fine-tuning quando o modelo geral não for suficiente para tarefas especializadas. Casos complexos, como consultas médicas, exigem contexto extenso e informações atualizadas — um modelo geral pode não ser confiável sem adaptação.
 
-For instance, medical queries are complex and require a lot of context. When a medical professional diagnoses a patient it's based on a variety of factors such as lifestyle or pre-existing conditions, and may even rely on recent medical journals to validate their diagnosis. In such nuanced scenarios, a general-purpose AI chat application cannot be a reliable source.
+### Exemplo: aplicação médica
 
-### Scenario: a medical application
+Para um app que apoia profissionais de saúde (diretrizes, interações medicamentosas, pesquisas recentes), um modelo geral pode responder perguntas simples, mas falhar em casos altamente específicos. Fine-tuning com um dataset médico relevante pode melhorar precisão e confiabilidade — requerendo, entretanto, dados amplos e de qualidade.
 
-Consider a chat application designed to assist medical practitioners by providing quick references to treatment guidelines, drug interactions, or recent research findings.
+## Considerações para uma Experiência de Chat de Alta Qualidade
 
-A general-purpose model might be adequate for answering basic medical questions or providing general advice, but it may struggle with the following:
+Critérios para “alta qualidade” incluem métricas acionáveis e adesão a um quadro de uso responsável da IA.
 
-- **Highly specific or complex cases**. For example, a neurologist might ask the application, "What are the current best practices for managing drug-resistant epilepsy in pediatric patients?"
-- **Lacking recent advancements**. A general-purpose model could struggle to provide a current answer that incorporates the most recent advancements in neurology and pharmacology.
+### Métricas-chave
 
-In instances such as these, fine-tuning the model with a specialized medical dataset can significantly improve its ability to handle these intricate medical inquiries more accurately and reliably. This requires access to a large and relevant dataset that represents the domain-specific challenges and questions that need to be addressed.
+Para manter a qualidade, monitore métricas que avaliem tanto a aplicação quanto o modelo e a experiência do usuário:
 
-## Considerations for a High Quality AI-Driven Chat Experience
-
-This section outlines the criteria for "high-quality" chat applications, which include the capture of actionable metrics and adherence to a framework that responsibly leverages AI technology.
-
-### Key Metrics
-
-To maintain the high-quality performance an application, it's essential to keep track of key metrics and considerations. These measurements not only ensure the functionality of the application but also assess the quality of the AI model and user experience. Below is a list that covers basic, AI, and user experience metrics to consider.
-
-| Metric                        | Definition                                                                                                             | Considerations for Chat Developer                                         |
+| Métrica                        | Definição                                                                                                             | Considerações para o desenvolvedor de chat                                         |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **Uptime**                    | Measures the time the application is operational and accessible by users.                                              | How will you minimize downtime?                                           |
-| **Response Time**             | The time taken by the application to reply to a user's query.                                                          | How can you optimize query processing to improve response time?           |
-| **Precision**                 | The ratio of true positive predictions to the total number of positive predictions                                     | How will you validate the precision of your model?                        |
-| **Recall (Sensitivity)**      | The ratio of true positive predictions to the actual number of positives                                               | How will you measure and improve recall?                                  |
-| **F1 Score**                  | The harmonic mean of precision and recall, that balances the trade-off between both.                                   | What is your target F1 Score? How will you balance precision and recall?  |
-| **Perplexity**                | Measures how well the probability distribution predicted by the model aligns with the actual distribution of the data. | How will you minimize perplexity?                                         |
-| **User Satisfaction Metrics** | Measures the user's perception of the application. Often captured through surveys.                                     | How often will you collect user feedback? How will you adapt based on it? |
-| **Error Rate**                | The rate at which the model makes mistakes in understanding or output.                                                 | What strategies do you have in place to reduce error rates?               |
-| **Retraining Cycles**         | The frequency with which the model is updated to incorporate new data and insights.                                    | How often will you retrain the model? What triggers a retraining cycle?   |
-| **Anomaly Detection**         | Tools and techniques for identifying unusual patterns that do not conform to expected behavior.                        | How will you respond to anomalies?                                        |
+| **Uptime**                    | Tempo em que a aplicação está operacional e acessível.                                                                 | Como minimizar downtime?                                           |
+| **Tempo de Resposta**         | Tempo necessário para a aplicação responder a uma consulta.                                                            | Como otimizar o processamento para reduzir latência?           |
+| **Precisão (Precision)**      | Razão entre predições verdadeiras positivas e o total de predições positivas.                                          | Como validar a precisão do modelo?                                |
+| **Recall (Sensibilidade)**    | Razão entre verdadeiras positivas e o número real de positivos.                                                       | Como medir e melhorar recall?                                      |
+| **F1 Score**                  | Média harmônica entre precision e recall, equilibrando ambos.                                                          | Qual o alvo para o F1? Como balancear precision e recall?         |
+| **Perplexity**                | Mede o quão bem a distribuição prevista pelo modelo alinha-se com a distribuição real dos dados.                       | Como minimizar perplexity?                                         |
+| **Métricas de Satisfação**    | Percepção do usuário sobre a aplicação (ex.: surveys).                                                                 | Com que frequência coletar feedback?                              |
+| **Taxa de Erro**              | Frequência de falhas na compreensão ou na saída do modelo.                                                              | Quais estratégias para reduzir erros?                             |
+| **Ciclos de Retraining**      | Frequência com que o modelo é atualizado com novos dados.                                                              | Quando acionar um ciclo de retraining?                             |
+| **Detecção de Anomalias**     | Técnicas para identificar padrões incomuns no comportamento do sistema.                                                | Como responder a anomalias?                                         |
 
-### Implementing Responsible AI Practices in Chat Applications
+### Implementando Práticas de IA Responsável em Aplicações de Chat
 
-Microsoft's approach to Responsible AI has identified six principles that should guide AI development and use. Below are the principles, their definition, and things a chat developer should consider and why they should take them seriously.
+Os seis princípios da Microsoft devem orientar o desenvolvimento e uso de IA. A tabela abaixo resume definições, considerações e motivos pelos quais cada princípio importa.
 
-| Principles             | Microsoft's Definition                                | Considerations for Chat Developer                                      | Why It's Important                                                                     |
-| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Fairness               | AI systems should treat all people fairly.            | Ensure the chat application does not discriminate based on user data.  | To build trust and inclusivity among users; avoids legal ramifications.                |
-| Reliability and Safety | AI systems should perform reliably and safely.        | Implement testing and fail-safes to minimize errors and risks.         | Ensures user satisfaction and prevents potential harm.                                 |
-| Privacy and Security   | AI systems should be secure and respect privacy.      | Implement strong encryption and data protection measures.              | To safeguard sensitive user data and comply with privacy laws.                         |
-| Inclusiveness          | AI systems should empower everyone and engage people. | Design UI/UX that is accessible and easy-to-use for diverse audiences. | Ensures a wider range of people can use the application effectively.                   |
-| Transparency           | AI systems should be understandable.                  | Provide clear documentation and reasoning for AI responses.            | Users are more likely to trust a system if they can understand how decisions are made. |
-| Accountability         | People should be accountable for AI systems.          | Establish a clear process for auditing and improving AI decisions.     | Enables ongoing improvement and corrective measures in case of mistakes.               |
+| Princípios             | Definição Microsoft                                | Considerações para o desenvolvedor                                      | Por que é importante                                                                     |
+| ---------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Fairness (Equidade)    | Sistemas de IA devem tratar as pessoas de forma justa.            | Assegure que a aplicação não discrimine com base em dados do usuário.  | Gera confiança e evita implicações legais.                |
+| Reliability and Safety | Sistemas de IA devem operar de forma confiável e segura.        | Implemente testes e mecanismos de fallback para minimizar riscos.         | Garante satisfação do usuário e previne danos.                                 |
+| Privacy and Security   | Sistemas de IA devem proteger a privacidade e ser seguros.      | Use criptografia e medidas de proteção de dados.              | Protege dados sensíveis e ajuda a cumprir leis de privacidade.                         |
+| Inclusiveness          | Sistemas de IA devem empoderar e engajar pessoas diversas. | Projete UI/UX acessível e inclusivo. | Permite que mais pessoas usem a aplicação efetivamente.                   |
+| Transparency           | Sistemas de IA devem ser compreensíveis.                  | Forneça documentação e explicações sobre decisões da IA.            | Usuários confiam mais quando entendem como decisões são tomadas.            |
+| Accountability         | Pessoas devem ser responsáveis pelos sistemas de IA.          | Estabeleça processos de auditoria e melhoria contínua.     | Permite correções e melhorias constantes em caso de erros.               |
 
 ## Assignment
 
-See [assignment](./python?WT.mc_id=academic-105485-koreyst). It will take you through a series of exercises from running your first chat prompts, to classifying and summarizing text and more. Notice that the assignments are available in different programming languages!
+Veja os exercícios em [python](./python?WT.mc_id=academic-105485-koreyst). Eles guiarão desde os primeiros prompts de chat até classificação e sumarização de textos. Os exercícios estão disponíveis em várias linguagens.
 
-## Great Work! Continue the Journey
+## Excelente trabalho — continue a jornada
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Após concluir esta lição, visite a [coleção de aprendizado de Generative AI](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) para aprofundar seus conhecimentos.
 
-Head over to Lesson 8 to see how you can start [building search applications](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+Siga para a Lição 8 e aprenda a construir aplicações de busca: [08-building-search-applications/README.md](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)
