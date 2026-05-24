@@ -1,47 +1,46 @@
-# Cloud Setup ☁️ – GitHub Codespaces
+# Configuração na Nuvem ☁️ – GitHub Codespaces
 
-**Use this guide if you don’t want to install anything locally.**  
-Codespaces gives you a free, browser-based VS Code instance with all dependencies pre-installed.
-
----
-
-## 1.  Why Codespaces?
-
-| Benefit | What it means for you |
-|---------|----------------------|
-| ✅ Zero installs | Works on Chromebook, iPad, school lab PCs… |
-| ✅ Pre-built dev container | Python 3, Node.js, .NET, Java already inside |
-| ✅ Free quota | Personal accounts get **120 core-hours / 60 GB-hours per month** |
-
-> 💡 **Tip**  
-> Keep your quota healthy by **stopping** or **deleting** idle codespaces  
-> (View ▸ Command Palette ▸ *Codespaces: Stop Codespace*).
+**Use este guia se você não quiser instalar nada localmente.**
+O Codespaces fornece uma instância gratuita do VS Code no navegador com todas as dependências pré-instaladas.
 
 ---
 
-## 2.  Create a Codespace (one click)
+## 1. Por que o Codespaces?
 
-1. **Fork** this repo (top-right **Fork** button).  
-2. In your fork, click **Code ▸ Codespaces ▸ Create codespace on main**.  
-   ![ialog showing buttons to create a codespace](./images/who-will-pay.webp?WT.mc_id=academic-105485-koreyst)
+| Benefício | O que isso significa para você |
+|-----------|------------------------------|
+| ✅ Zero instalações | Funciona em Chromebook, iPad, computadores do laboratório da escola... |
+| ✅ Container de desenvolvimento pré-construído | Python 3, Node.js, .NET, Java já inclusos |
+| ✅ Cota gratuita | Contas pessoais recebem **120 core-hours / 60 GB-hours por mês** |
 
-✅ A browser VS Code window opens and the dev container starts building.
-This takes **~2 minutes** the first time.
+> 💡 **Dica**
+> Mantenha sua cota saudável **parando** ou **excluindo** codespaces ociosos
+> (Veja ▸ Command Palette ▸ *Codespaces: Stop Codespace*).
 
-## 3. Add your API key (the safe way)
+---
 
-### Option A Codespaces Secrets — Recommended
+## 2. Crie um Codespace (um clique)
 
-1. ⚙️ Gear icon -> Command Pallete-> Codespaces : Manage user secret -> Add a new secret.
-2. Name: OPENAI_API_KEY
-3. Value: paste your key → Add secret
+1. **Fork** deste repositório (botão **Fork** no canto superior direito).
+2. No seu fork, clique em **Code ▸ Codespaces ▸ Create codespace on main**.
+   ![ialog mostrando botões para criar um codespace](./images/who-will-pay.webp?WT.mc_id=academic-105485-koreyst)
 
-That’s it—our code will pick it up automatically.
+✅ Uma janela do VS Code no navegador será aberta e o dev container começará a ser construído.
+Isso leva **~2 minutos** na primeira vez.
 
-### Option B .env file (if you really need one)
+## 3. Adicione sua chave de API (do jeito seguro)
+
+### Opção A Secrets do Codespaces — Recomendado
+
+1. ⚙️ Ícone de engrenagem -> Command Palette -> Codespaces : Manage user secret -> Add a new secret.
+2. Nome: OPENAI_API_KEY
+3. Valor: cole sua chave -> Add secret
+
+Pronto — nosso código a reconhecerá automaticamente.
+
+### Opção B arquivo .env (se realmente precisar)
 
 ```bash
 cp .env.copy .env
-code .env         # fill in OPENAI_API_KEY=your_key_here
+code .env         # preencha OPENAI_API_KEY=seu_key_aqui
 ```
-
