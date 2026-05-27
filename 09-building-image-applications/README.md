@@ -1,91 +1,90 @@
-# Building Image Generation Applications
+# Construindo Aplicações de Geração de Imagens
 
-[![Building Image Generation Applications](./images/09-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/B5VP0_J7cs8?si=5P3L5o7F_uS_QcG9)
+[![Construindo Aplicações de Geração de Imagens](./images/09-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://youtu.be/B5VP0_J7cs8?si=5P3L5o7F_uS_QcG9)
 
-There's more to LLMs than text generation. It's also possible to generate images from text descriptions. Having images as a modality can be highly useful in a number of areas from MedTech, architecture, tourism, game development and more. In this chapter, we will look into the two most popular image generation models, DALL-E and Midjourney.
+Existe mais em LLMs do que geração de texto. Também é possível gerar imagens a partir de descrições em texto. Ter imagens como modalidade pode ser muito útil em diversas áreas, como MedTech, arquitetura, turismo, desenvolvimento de jogos e mais. Neste capítulo, vamos explorar os dois modelos de geração de imagem mais populares: DALL-E e Midjourney.
 
-## Introduction
+## Introdução
 
-In this lesson, we will cover:
+Nesta lição, vamos cobrir:
 
-- Image generation and why it's useful.
-- DALL-E and Midjourney, what they are, and how they work.
-- How you would build an image generation app.
+- Geração de imagens e por que ela é útil.
+- O que são DALL-E e Midjourney e como funcionam.
+- Como você construiria um aplicativo de geração de imagens.
 
-## Learning Goals
+## Objetivos de Aprendizagem
 
-After completing this lesson, you will be able to:
+Ao concluir esta lição, você será capaz de:
 
-- Build an image generation application.
-- Define boundaries for your application with meta prompts.
-- Work with DALL-E and Midjourney.
+- Construir uma aplicação de geração de imagens.
+- Definir limites para sua aplicação com metaprompts.
+- Trabalhar com DALL-E e Midjourney.
 
-## Why build an image generation application?
+## Por que construir uma aplicação de geração de imagens?
 
-Image generation applications are a great way to explore the capabilities of Generative AI. They can be used for, for example:
+Aplicações de geração de imagens são uma ótima maneira de explorar as capacidades da IA Generativa. Elas podem ser usadas, por exemplo, para:
 
-- **Image editing and synthesis**. You can generate images for a variety of use cases, such as image editing and image synthesis.
+- **Edição e síntese de imagens**. Você pode gerar imagens para vários casos de uso, como edição de imagem e síntese de imagem.
 
-- **Applied to a variety of industries**. They can also be used to generate images for a variety of industries like Medtech, Tourism, Game development and more.
+- **Aplicação em diversas indústrias**. Elas também podem ser usadas para gerar imagens para diferentes setores, como MedTech, Turismo, desenvolvimento de jogos e mais.
 
-## Scenario: Edu4All
+## Cenário: Edu4All
 
-As part of this lesson, we will continue to work with our startup, Edu4All, in this lesson. The students will create images for their assessments, exactly what images is up to the students, but they could be illustrations for their own fairytale or create a new character for their story or help them visualize their ideas and concepts.
+Como parte desta lição, continuaremos trabalhando com nossa startup Edu4All. Os estudantes criarão imagens para suas avaliações; exatamente quais imagens produzir é decisão dos próprios alunos, mas podem ser ilustrações para um conto de fadas, um novo personagem para sua história ou algo que ajude a visualizar ideias e conceitos.
 
-Here's what Edu4All's students could generate for example if they're working in class on monuments:
+Veja o que os estudantes da Edu4All poderiam gerar, por exemplo, se estiverem trabalhando em aula sobre monumentos:
 
-![Edu4All startup, class on monuments, Eiffel Tower](./images/startup.png?WT.mc_id=academic-105485-koreyst)
+![Edu4All startup, aula sobre monumentos, Torre Eiffel](./images/startup.png?WT.mc_id=academic-105485-koreyst)
 
-using a prompt like
+usando um prompt como
 
 > "Dog next to Eiffel Tower in early morning sunlight"
 
-## What is DALL-E and Midjourney?
+## O que são DALL-E e Midjourney?
 
-[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) and [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) are two of the most popular image generation models, they allow you to use prompts to generate images.
+[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) e [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) são dois dos modelos de geração de imagem mais populares; eles permitem usar prompts para gerar imagens.
 
 ### DALL-E
 
-Let's start with DALL-E, which is a Generative AI model that generates images from text descriptions.
+Vamos começar com o DALL-E, que é um modelo de IA Generativa que gera imagens a partir de descrições em texto.
 
-> [DALL-E is a combination of two models, CLIP and diffused attention](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst).
+> [DALL-E é uma combinação de dois modelos, CLIP e atenção difusa](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst).
 
-- **CLIP**, is a model that generates embeddings, which are numerical representations of data, from images and text.
+- **CLIP** é um modelo que gera embeddings — representações numéricas de dados — a partir de imagens e texto.
 
-- **Diffused attention**, is a model that generates images from embeddings. DALL-E is trained on a dataset of images and text and can be used to generate images from text descriptions. For example, DALL-E can be used to generate images of a cat in a hat, or a dog with a mohawk.
+- **Atenção difusa** é um modelo que gera imagens a partir de embeddings. O DALL-E é treinado em um conjunto de dados de imagens e texto e pode ser usado para gerar imagens a partir de descrições de texto. Por exemplo, o DALL-E pode gerar imagens de um gato usando chapéu ou um cachorro com um moicano.
 
 ### Midjourney
 
-Midjourney works in a similar way to DALL-E, it generates images from text prompts. Midjourney, can also be used to generate images using prompts like “a cat in a hat”, or a “dog with a mohawk”.
+O Midjourney funciona de maneira semelhante ao DALL-E: ele gera imagens a partir de prompts de texto. O Midjourney também pode ser usado para gerar imagens com prompts como “a cat in a hat” ou “a dog with a mohawk”.
 
-![Image generated by Midjourney, mechanical pigeon](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
-_Image cred Wikipedia, image generated by Midjourney_
+![Imagem gerada por Midjourney, pombo mecânico](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
+_Crédito da imagem Wikipedia, imagem gerada por Midjourney_
 
-## How does DALL-E and Midjourney Work
+## Como DALL-E e Midjourney funcionam
 
-First, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). DALL-E is a Generative AI model based on the transformer architecture with an _autoregressive transformer_.
+Primeiro, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). O DALL-E é um modelo de IA Generativa baseado na arquitetura transformer com um _transformer autorregressivo_.
 
-An _autoregressive transformer_ defines how a model generates images from text descriptions, it generates one pixel at a time, and then uses the generated pixels to generate the next pixel. Passing through multiple layers in a neural network, until the image is complete.
+Um _transformer autorregressivo_ define como um modelo gera imagens a partir de descrições em texto: ele gera um pixel de cada vez e, em seguida, usa os pixels gerados para produzir o próximo pixel, passando por múltiplas camadas em uma rede neural, até que a imagem esteja completa.
 
-With this process, DALL-E, controls attributes, objects, characteristics, and more in the image it generates. However, DALL-E 2 and 3 have more control over the generated image.
+Com esse processo, o DALL-E controla atributos, objetos, características e mais na imagem que gera. No entanto, o DALL-E 2 e o DALL-E 3 têm ainda mais controle sobre a imagem gerada.
 
-## Building your first image generation application
+## Construindo seu primeiro aplicativo de geração de imagens
 
-So what does it take to build an image generation application? You need the following libraries:
+Então, o que é preciso para construir uma aplicação de geração de imagens? Você precisa das seguintes bibliotecas:
 
-- **python-dotenv**, you're highly recommended to use this library to keep your secrets in a _.env_ file away from the code.
-- **openai**, this library is what you will use to interact with the OpenAI API.
-- **pillow**, to work with images in Python.
-- **requests**, to help you make HTTP requests.
+- **python-dotenv** — é altamente recomendável usar essa biblioteca para manter seus segredos em um arquivo _.env_ separado do código.
+- **openai** — essa biblioteca é o que você usará para interagir com a API da OpenAI.
+- **pillow** — para trabalhar com imagens em Python.
+- **requests** — para ajudar a fazer requisições HTTP.
 
-## Create and deploy an Azure OpenAI model
+## Criar e implantar um modelo Azure OpenAI
 
-If not done already, follow the instructions on the [Microsoft Learn](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal) page
-to create an Azure OpenAI resource and model. Select DALL-E 3 as model.  
+Se ainda não fez, siga as instruções na página do [Microsoft Learn](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal) para criar um recurso Azure OpenAI e um modelo. Selecione o DALL-E 3 como modelo.
 
-## Create the app
+## Crie o app
 
-1. Create a file _.env_ with the following content:
+1. Crie um arquivo _.env_ com o seguinte conteúdo:
 
    ```text
    AZURE_OPENAI_ENDPOINT=<your endpoint>
@@ -93,9 +92,9 @@ to create an Azure OpenAI resource and model. Select DALL-E 3 as model.
    AZURE_OPENAI_DEPLOYMENT="dall-e-3"
    ```
 
-   Locate this information in Azure OpenAI Foundry Portal for your resource in the "Deployments" section.
+   Localize essas informações no Portal Azure OpenAI Foundry para o seu recurso, na seção "Deployments".
 
-1. Collect the above libraries in a file called _requirements.txt_ like so:
+1. Liste as bibliotecas acima em um arquivo chamado _requirements.txt_ da seguinte forma:
 
    ```text
    python-dotenv
@@ -104,7 +103,7 @@ to create an Azure OpenAI resource and model. Select DALL-E 3 as model.
    requests
    ```
 
-1. Next, create virtual environment and install the libraries:
+1. Em seguida, crie um ambiente virtual e instale as bibliotecas:
 
    ```bash
    python3 -m venv venv
@@ -112,14 +111,14 @@ to create an Azure OpenAI resource and model. Select DALL-E 3 as model.
    pip install -r requirements.txt
    ```
 
-   For Windows, use the following commands to create and activate your virtual environment:
+   Para Windows, use os seguintes comandos para criar e ativar o ambiente virtual:
 
    ```bash
    python3 -m venv venv
    venv\Scripts\activate.bat
    ```
 
-1. Add the following code in file called _app.py_:
+1. Adicione o código abaixo em um arquivo chamado _app.py_:
 
     ```python
     import openai
@@ -129,51 +128,51 @@ to create an Azure OpenAI resource and model. Select DALL-E 3 as model.
     import dotenv
     from openai import OpenAI, AzureOpenAI
     
-    # import dotenv
+    # importa o dotenv
     dotenv.load_dotenv()
     
-    # configure Azure OpenAI service client 
+    # configura o cliente do serviço Azure OpenAI
     client = AzureOpenAI(
-      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
       api_key=os.environ['AZURE_OPENAI_API_KEY'],
-      api_version = "2024-02-01"
+      api_version="2024-02-01"
       )
     try:
-        # Create an image by using the image generation API
+        # Cria uma imagem usando a API de geração de imagens
         generation_response = client.images.generate(
                                 prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
                                 size='1024x1024', n=1,
                                 model=os.environ['AZURE_OPENAI_DEPLOYMENT']
                               )
 
-        # Set the directory for the stored image
+        # Define o diretório para armazenar a imagem
         image_dir = os.path.join(os.curdir, 'images')
 
-        # If the directory doesn't exist, create it
+        # Se o diretório não existir, cria-o
         if not os.path.isdir(image_dir):
             os.mkdir(image_dir)
 
-        # Initialize the image path (note the filetype should be png)
+        # Inicializa o caminho da imagem (o tipo de arquivo deve ser png)
         image_path = os.path.join(image_dir, 'generated-image.png')
 
-        # Retrieve the generated image
-        image_url = generation_response.data[0].url  # extract image URL from response
-        generated_image = requests.get(image_url).content  # download the image
+        # Recupera a imagem gerada
+        image_url = generation_response.data[0].url  # extrai a URL da imagem da resposta
+        generated_image = requests.get(image_url).content  # faz o download da imagem
         with open(image_path, "wb") as image_file:
             image_file.write(generated_image)
 
-        # Display the image in the default image viewer
+        # Exibe a imagem no visualizador padrão
         image = Image.open(image_path)
         image.show()
 
-    # catch exceptions
+    # captura exceções
     except openai.InvalidRequestError as err:
         print(err)
-   ```
+    ```
 
-Let's explain this code:
+Vamos explicar este código:
 
-- First, we import the libraries we need, including the OpenAI library, the dotenv library, the requests library, and the Pillow library.
+- Primeiro, importamos as bibliotecas que precisamos, incluindo a biblioteca OpenAI, a biblioteca dotenv, a biblioteca requests e a biblioteca Pillow.
 
   ```python
   import openai
@@ -183,28 +182,28 @@ Let's explain this code:
   import dotenv
   ```
 
-- Next, we load the environment variables from the _.env_ file.
+- Em seguida, carregamos as variáveis de ambiente do arquivo _.env_.
 
   ```python
-  # import dotenv
+  # importa o dotenv
   dotenv.load_dotenv()
   ```
 
-- After that, we configure Azure OpenAI service client 
+- Depois disso, configuramos o cliente do serviço Azure OpenAI.
 
   ```python
-  # Get endpoint and key from environment variables
+  # Obtem o endpoint e a chave das variáveis de ambiente
   client = AzureOpenAI(
-      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
       api_key=os.environ['AZURE_OPENAI_API_KEY'],
-      api_version = "2024-02-01"
+      api_version="2024-02-01"
       )
   ```
 
-- Next, we generate the image:
+- Em seguida, geramos a imagem:
 
   ```python
-  # Create an image by using the image generation API
+  # Cria uma imagem usando a API de geração de imagens
   generation_response = client.images.generate(
                         prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
                         size='1024x1024', n=1,
@@ -212,18 +211,18 @@ Let's explain this code:
                       )
   ```
 
-  The above code responds with a JSON object that contains the URL of the generated image. We can use the URL to download the image and save it to a file.
+  O código acima responde com um objeto JSON que contém a URL da imagem gerada. Podemos usar essa URL para baixar a imagem e salvá-la em um arquivo.
 
-- Lastly, we open the image and use the standard image viewer to display it:
+- Por fim, abrimos a imagem e usamos o visualizador de imagens padrão para exibí-la:
 
   ```python
   image = Image.open(image_path)
   image.show()
   ```
 
-### More details on generating the image
+### Mais detalhes sobre a geração da imagem
 
-Let's look at the code that generates the image in more detail:
+Vamos observar o código que gera a imagem em mais detalhes:
 
    ```python
      generation_response = client.images.generate(
@@ -233,23 +232,23 @@ Let's look at the code that generates the image in more detail:
                            )
    ```
 
-- **prompt**, is the text prompt that is used to generate the image. In this case, we're using the prompt "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils".
-- **size**, is the size of the image that is generated. In this case, we're generating an image that is 1024x1024 pixels.
-- **n**, is the number of images that are generated. In this case, we're generating two images.
-- **temperature**, is a parameter that controls the randomness of the output of a Generative AI model. The temperature is a value between 0 and 1 where 0 means that the output is deterministic and 1 means that the output is random. The default value is 0.7.
+- **prompt** é o prompt de texto que é usado para gerar a imagem. Neste caso, estamos usando o prompt "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils".
+- **size** é o tamanho da imagem que será gerada. Neste caso, estamos gerando uma imagem com 1024x1024 pixels.
+- **n** é o número de imagens que serão geradas. Neste caso, estamos gerando duas imagens.
+- **temperature** é um parâmetro que controla a aleatoriedade da saída de um modelo de IA Generativa. A temperatura varia de 0 a 1, onde 0 significa que a saída é determinística e 1 significa que a saída é aleatória. O valor padrão é 0.7.
 
-There are more things you can do with images that we will cover in the next section.
+Há mais coisas que você pode fazer com imagens, e vamos cobrir isso na próxima seção.
 
-## Additional capabilities of image generation
+## Capacidades adicionais de geração de imagem
 
-You've seen so far how we were able to generate an image using a few lines in Python. However, there are more things you can do with images.
+Até agora você viu como gerar uma imagem usando poucas linhas em Python. No entanto, há mais coisas que você pode fazer com imagens.
 
-You can also do the following:
+Você também pode fazer o seguinte:
 
-- **Perform edits**. By providing an existing image a mask and a prompt, you can alter an image. For example, you can add something to a portion of an image. Imagine our bunny image, you can add a hat to the bunny. How you would do that is by providing the image, a mask (identifying the part of the area for the change) and a text prompt to say what should be done. 
-> Note: this is not supported in DALL-E 3. 
+- **Realizar edições**. Ao fornecer uma imagem existente, uma máscara e um prompt, você pode alterar uma imagem. Por exemplo, você pode adicionar algo a uma parte da imagem. Imagine nossa imagem do coelho; você pode adicionar um chapéu ao coelho. Para fazer isso, forneça a imagem, uma máscara (que identifica a parte da área a ser alterada) e um prompt de texto dizendo o que deve ser feito.
+> Observação: isso não é suportado no DALL-E 3.
  
-Here is an example using GPT Image:
+Aqui está um exemplo usando GPT Image:
 
    ```python
    response = client.images.edit(
@@ -261,7 +260,7 @@ Here is an example using GPT Image:
    image_url = response.data[0].url
    ```
 
-  The base image would only contain the lounge with pool but the final image would have a flamingo:
+  A imagem base conteria apenas o lounge com piscina, mas a imagem final teria um flamingo:
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
   <img src="./images/sunlit_lounge.png" style="width: 30%; max-width: 200px; height: auto;">
@@ -270,7 +269,7 @@ Here is an example using GPT Image:
 </div>
 
 
-- **Create variations**. The idea is that you take an existing image and ask that variations are created. To create a variation, you provide an image and a text prompt and code like so:
+- **Criar variações**. A ideia é pegar uma imagem existente e pedir que sejam criadas variações. Para criar uma variação, você fornece uma imagem e um prompt de texto e usa um código como este:
 
   ```python
   response = openai.Image.create_variation(
@@ -281,23 +280,23 @@ Here is an example using GPT Image:
   image_url = response['data'][0]['url']
   ```
 
-  > Note, this is only supported on OpenAI
+  > Observação: isso é suportado apenas pela OpenAI.
 
-## Temperature
+## Temperatura
 
-Temperature is a parameter that controls the randomness of the output of a Generative AI model. The temperature is a value between 0 and 1 where 0 means that the output is deterministic and 1 means that the output is random. The default value is 0.7.
+Temperatura é um parâmetro que controla a aleatoriedade da saída de um modelo de IA Generativa. A temperatura varia de 0 a 1, onde 0 significa que a saída é determinística e 1 significa que a saída é aleatória. O valor padrão é 0.7.
 
-Let's look at an example of how temperature works, by running this prompt twice:
+Vamos ver um exemplo de como a temperatura funciona, executando este prompt duas vezes:
 
-> Prompt : "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"
+> Prompt: "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"
 
 ![Bunny on a horse holding a lollipop, version 1](./images/v1-generated-image.png)
 
-Now let's run that same prompt just to see that we won't get the same image twice:
+Agora vamos executar o mesmo prompt apenas para ver que não obteremos a mesma imagem duas vezes:
 
 ![Generated image of bunny on horse](./images/v2-generated-image.png)
 
-As you can see, the images are similar, but not the same. Let's try changing the temperature value to 0.1 and see what happens:
+Como você pode ver, as imagens são semelhantes, mas não idênticas. Vamos tentar alterar o valor da temperatura para 0.1 e ver o que acontece:
 
 ```python
  generation_response = client.images.create(
@@ -307,11 +306,11 @@ As you can see, the images are similar, but not the same. Let's try changing the
     )
 ```
 
-### Changing the temperature
+### Alterando a temperatura
 
-So let's try to make the response more deterministic. We could observe from the two images we generated that in the first image, there's a bunny and in the second image, there's a horse, so the images vary greatly.
+Então vamos tentar tornar a resposta mais determinística. Podemos observar nas duas imagens que geramos que na primeira imagem há um coelho e na segunda imagem há um cavalo, então as imagens variam bastante.
 
-Let's therefore change our code and set the temperature to 0, like so:
+Vamos, portanto, mudar nosso código e definir a temperatura como 0, assim:
 
 ```python
 generation_response = client.images.create(
@@ -322,28 +321,28 @@ generation_response = client.images.create(
     )
 ```
 
-Now when you run this code, you get these two images:
+Agora, quando você executar este código, obterá estas duas imagens:
 
 - ![Temperature 0, v1](./images/v1-temp-generated-image.png)
 - ![Temperature 0 , v2](./images/v2-temp-generated-image.png)
 
-Here you can clearly see how the images resemble each other more.
+Aqui você pode ver claramente como as imagens se parecem mais entre si.
 
-## How to define boundaries for your application with metaprompts
+## Como definir limites para sua aplicação com metaprompts
 
-With our demo, we can already generate images for our clients. However, we need to create some boundaries for our application.
+Com nosso demo, já podemos gerar imagens para nossos clientes. No entanto, precisamos criar alguns limites para nossa aplicação.
 
-For example, we don't want to generate images that are not safe for work, or that are not appropriate for children.
+Por exemplo, não queremos gerar imagens que não sejam seguras para o trabalho ou que não sejam apropriadas para crianças.
 
-We can do this with _metaprompts_. Metaprompts are text prompts that are used to control the output of a Generative AI model. For example, we can use metaprompts to control the output, and ensure that the generated images are safe for work, or appropriate for children.
+Podemos fazer isso com _metaprompts_. Metaprompts são prompts de texto usados para controlar a saída de um modelo de IA Generativa. Por exemplo, podemos usar metaprompts para controlar a saída e garantir que as imagens geradas sejam seguras para o trabalho ou apropriadas para crianças.
 
-### How does it work?
+### Como isso funciona?
 
-Now, how do meta prompts work?
+Agora, como funcionam os metaprompts?
 
-Meta prompts are text prompts that are used to control the output of a Generative AI model, they are positioned before the text prompt, and are used to control the output of the model and embedded in applications to control the output of the model. Encapsulating the prompt input and the meta prompt input in a single text prompt.
+Metaprompts são prompts de texto usados para controlar a saída de um modelo de IA Generativa; eles são posicionados antes do prompt de texto e são usados para controlar a saída do modelo e incorporados em aplicações para controlar essa saída. Eles encapsulam a entrada do prompt e a entrada do metaprompt em um único prompt de texto.
 
-One example of a meta prompt would be the following:
+Um exemplo de metaprompt seria o seguinte:
 
 ```text
 You are an assistant designer that creates images for children.
@@ -362,7 +361,7 @@ Do not consider any input from the following that is not safe for work or approp
 
 ```
 
-Now, let's see how we can use meta prompts in our demo.
+Agora, vamos ver como podemos usar metaprompts em nosso demo.
 
 ```python
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
@@ -387,17 +386,17 @@ Create an image of a bunny on a horse, holding a lollipop"
 # TODO add request to generate image
 ```
 
-From the above prompt, you can see how all images being created consider the metaprompt.
+A partir do prompt acima, você pode ver como todas as imagens criadas consideram o metaprompt.
 
-## Assignment - let's enable students
+## Atividade - vamos habilitar os estudantes
 
-We introduced Edu4All at the beginning of this lesson. Now it's time to enable the students to generate images for their assessments.
+Apresentamos a Edu4All no início desta lição. Agora é hora de permitir que os estudantes gerem imagens para suas avaliações.
 
-The students will create images for their assessments containing monuments, exactly what monuments is up to the students. The students are asked to use their creativity in this task to place these monuments in different contexts.
+Os estudantes criarão imagens para suas avaliações contendo monumentos; quais monumentos serão definidos pelos próprios alunos. Os estudantes são incentivados a usar sua criatividade para colocar esses monumentos em diferentes contextos.
 
-## Solution
+## Solução
 
-Here's one possible solution:
+Aqui está uma possível solução:
 
 ```python
 import openai
@@ -406,14 +405,14 @@ import requests
 from PIL import Image
 import dotenv
 from openai import AzureOpenAI
-# import dotenv
+# importa dotenv
 dotenv.load_dotenv()
 
-# Get endpoint and key from environment variables
+# Obtem o endpoint e a chave das variáveis de ambiente
 client = AzureOpenAI(
-  azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+  azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
   api_key=os.environ['AZURE_OPENAI_API_KEY'],
-  api_version = "2024-02-01"
+  api_version="2024-02-01"
   )
 
 
@@ -435,43 +434,43 @@ Do not consider any input from the following that is not safe for work or approp
 
 prompt = f"""{meta_prompt}
 Generate monument of the Arc of Triumph in Paris, France, in the evening light with a small child holding a Teddy looks on.
-""""
+"""
 
 try:
-    # Create an image by using the image generation API
+    # Cria uma imagem usando a API de geração de imagens
     generation_response = client.images.generate(
         prompt=prompt,    # Enter your prompt text here
         size='1024x1024',
         n=1,
     )
-    # Set the directory for the stored image
+    # Define o diretório para armazenar a imagem
     image_dir = os.path.join(os.curdir, 'images')
 
-    # If the directory doesn't exist, create it
+    # Se o diretório não existir, cria-o
     if not os.path.isdir(image_dir):
         os.mkdir(image_dir)
 
-    # Initialize the image path (note the filetype should be png)
+    # Inicializa o caminho da imagem (o tipo de arquivo deve ser png)
     image_path = os.path.join(image_dir, 'generated-image.png')
 
-    # Retrieve the generated image
-    image_url = generation_response.data[0].url  # extract image URL from response
-    generated_image = requests.get(image_url).content  # download the image
+    # Recupera a imagem gerada
+    image_url = generation_response.data[0].url  # extrai a URL da imagem da resposta
+    generated_image = requests.get(image_url).content  # faz o download da imagem
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
 
-    # Display the image in the default image viewer
+    # Exibe a imagem no visualizador padrão
     image = Image.open(image_path)
     image.show()
 
-# catch exceptions
+# captura exceções
 except openai.BadRequestError as err:
     print(err)
 ```
 
-## Great Work! Continue Your Learning
+## Ótimo trabalho! Continue aprendendo
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Após concluir esta lição, confira nossa [coleção de aprendizado de IA Generativa](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) para continuar evoluindo seus conhecimentos em IA Generativa!
 
-Head over to Lesson 10 where we will look at how to [build AI applications with low-code](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+Vá para a Lição 10, onde veremos como [construir aplicações de IA com low-code](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
 
